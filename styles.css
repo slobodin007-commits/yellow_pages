@@ -187,9 +187,9 @@ main {
   padding: 0 0.75rem 1.5rem;
 }
 
-/* --- Hero --- */
+/* --- Hero (минимум отступа сверху на мобильном) --- */
 .hero {
-  padding: 0.75rem 0 0.75rem;
+  padding: 0.5rem 0 0.5rem;
   text-align: center;
 }
 
@@ -212,7 +212,7 @@ main {
 
 /* --- Search --- */
 .search-section {
-  padding: 0.5rem 0 1rem;
+  padding: 0.4rem 0 0.6rem;
 }
 
 .search-input {
@@ -239,20 +239,21 @@ main {
 
 /* --- Section title --- */
 .section-title {
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 700;
-  margin: 0 0 1rem;
+  margin: 0 0 0.5rem;
   color: #1a1a1a;
 }
 
-/* --- Stores grid: 1 колонка на мобильном --- */
+/* --- Stores grid: на мобильном сразу 2 колонки (два квадратика по горизонтали, по вертикали скролл) --- */
 .stores-section {
-  padding: 1rem 0;
+  padding: 0.5rem 0 1rem;
 }
 
 .stores-grid {
   display: grid;
-  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
 }
 
 .no-results {
@@ -261,75 +262,84 @@ main {
   padding: 2rem 1rem;
 }
 
-/* --- Store card --- */
+/* --- Store card (на мобильном компактные квадратики в сетке 2 колонки) --- */
 .store-card {
   background: #fff;
-  border-radius: 16px;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   transition: box-shadow 0.2s ease;
 }
 
 .store-card:hover {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
 .store-card-image {
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
   background: #e8e8e8;
 }
 
 .store-card-body {
-  padding: 1rem;
+  padding: 0.5rem;
 }
 
 .store-card-title {
-  margin: 0 0 0.25rem;
-  font-size: 1.125rem;
+  margin: 0 0 0.2rem;
+  font-size: 0.8125rem;
   font-weight: 700;
   color: #1a1a1a;
+  line-height: 1.2;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .store-card-category {
   display: inline-block;
-  margin-bottom: 0.5rem;
-  font-size: 0.8125rem;
+  margin-bottom: 0.35rem;
+  font-size: 0.6875rem;
   color: #1a73e8;
   background: #e8f0fe;
-  padding: 0.25rem 0.5rem;
-  border-radius: 6px;
+  padding: 0.15rem 0.35rem;
+  border-radius: 4px;
 }
 
 .store-card-desc {
-  margin: 0 0 0.75rem;
-  font-size: 0.9375rem;
+  margin: 0 0 0.4rem;
+  font-size: 0.6875rem;
   color: #555;
-  line-height: 1.4;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .store-card-hours {
-  margin: 0 0 0.75rem;
-  font-size: 0.875rem;
+  margin: 0 0 0.4rem;
+  font-size: 0.6875rem;
   color: #666;
 }
 
 .store-coupon-area {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .store-coupon-toggle {
   width: 100%;
-  padding: 0.75rem 1rem;
-  font-size: 1rem;
+  padding: 0.4rem 0.5rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: #fff;
   background: #1a73e8;
   border: none;
-  border-radius: 12px;
+  border-radius: 8px;
   cursor: pointer;
-  min-height: 48px;
+  min-height: 36px;
   transition: background 0.2s ease;
 }
 
@@ -342,32 +352,32 @@ main {
 }
 
 .store-coupon-reveal {
-  margin-top: 0.75rem;
-  padding: 1rem;
+  margin-top: 0.4rem;
+  padding: 0.5rem;
   background: #f8f9fa;
-  border-radius: 12px;
+  border-radius: 8px;
   border: 1px dashed #ccc;
 }
 
 .store-coupon-code {
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 700;
   font-family: ui-monospace, monospace;
   letter-spacing: 0.05em;
   color: #1a1a1a;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.35rem;
 }
 
 .store-copy-btn {
-  padding: 0.5rem 1rem;
-  font-size: 0.9375rem;
+  padding: 0.35rem 0.5rem;
+  font-size: 0.6875rem;
   background: #fff;
   border: 1px solid #1a73e8;
   color: #1a73e8;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
-  min-height: 44px;
-  min-width: 44px;
+  min-height: 32px;
+  min-width: 32px;
 }
 
 .store-copy-btn:hover {
@@ -377,22 +387,22 @@ main {
 .store-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.35rem;
 }
 
 .store-btn {
   flex: 1;
-  min-width: 140px;
-  padding: 0.75rem 1rem;
-  font-size: 0.9375rem;
+  min-width: 0;
+  padding: 0.4rem 0.5rem;
+  font-size: 0.6875rem;
   font-weight: 600;
   text-align: center;
-  border-radius: 12px;
-  min-height: 48px;
+  border-radius: 8px;
+  min-height: 32px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.35rem;
+  gap: 0.2rem;
   text-decoration: none;
   border: none;
   cursor: pointer;
@@ -518,7 +528,7 @@ main {
    Media queries: планшет и десктоп
    ============================================ */
 
-/* Планшет: 2 колонки, чуть больше отступов */
+/* Планшет: 2 колонки, карточки побольше */
 @media (min-width: 600px) {
   .header-inner {
     padding: 0.6rem 1rem;
@@ -537,12 +547,56 @@ main {
     font-size: 1.75rem;
   }
 
+  .section-title {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
   .stores-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .store-card-body {
+    padding: 0.75rem;
+  }
+
+  .store-card-title {
+    font-size: 1rem;
+    -webkit-line-clamp: 2;
+  }
+
+  .store-card-category {
+    font-size: 0.75rem;
+  }
+
+  .store-card-desc,
+  .store-card-hours {
+    font-size: 0.8125rem;
+  }
+
+  .store-card-image {
+    aspect-ratio: 16 / 10;
+  }
+
+  .store-coupon-toggle {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    min-height: 44px;
+  }
+
+  .store-copy-btn {
+    font-size: 0.8125rem;
+    min-height: 40px;
+  }
+
+  .store-btn {
+    font-size: 0.8125rem;
+    min-height: 40px;
   }
 }
 
-/* Десктоп: 3 колонки, больше отступы */
+/* Десктоп: 3 колонки, крупные карточки */
 @media (min-width: 900px) {
   .header-inner {
     padding: 1rem 1.5rem;
@@ -575,6 +629,60 @@ main {
   .stores-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: 1.25rem;
+  }
+
+  .store-card {
+    border-radius: 16px;
+  }
+
+  .store-card-body {
+    padding: 1rem;
+  }
+
+  .store-card-title {
+    font-size: 1.125rem;
+    -webkit-line-clamp: unset;
+  }
+
+  .store-card-category {
+    font-size: 0.8125rem;
+  }
+
+  .store-card-desc {
+    font-size: 0.9375rem;
+    -webkit-line-clamp: unset;
+  }
+
+  .store-card-hours {
+    font-size: 0.875rem;
+  }
+
+  .store-coupon-toggle {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    min-height: 48px;
+  }
+
+  .store-coupon-reveal {
+    padding: 1rem;
+    margin-top: 0.75rem;
+  }
+
+  .store-coupon-code {
+    font-size: 1.25rem;
+  }
+
+  .store-copy-btn {
+    font-size: 0.9375rem;
+    padding: 0.5rem 1rem;
+    min-height: 44px;
+  }
+
+  .store-btn {
+    min-width: 100px;
+    padding: 0.75rem 1rem;
+    font-size: 0.9375rem;
+    min-height: 48px;
   }
 
   .footer {
