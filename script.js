@@ -456,40 +456,63 @@ function setLang(lang) {
   });
 }
 
-// Шапка на мобильном: скрывается при прокрутке вниз, появляется при прокрутке вверх (всплывающая панель)
+// Шапка на мобильном: скрывается при прокрутке вниз, появляется при прокрутке вверх (накопление пикселей для медленной прокрутки)
 function initHeaderScroll() {
   var header = document.querySelector('.header');
   if (!header) return;
   var lastScrollY = window.scrollY || window.pageYOffset;
+  var accDown = 0;
+  var accUp = 0;
+  var threshold = 18;
+  var topZone = 60;
   var ticking = false;
   var mobile = window.matchMedia('(max-width: 599px)');
 
   function updateHeader() {
     if (!mobile.matches) {
       header.classList.remove('header--hidden');
+      accDown = accUp = 0;
+      ticking = false;
       return;
     }
     var scrollY = window.scrollY || window.pageYOffset;
-    if (scrollY <= 50) {
-      header.classList.remove('header--hidden');
-    } else if (scrollY > lastScrollY + 8) {
-      header.classList.add('header--hidden');
-    } else if (scrollY < lastScrollY - 8) {
-      header.classList.remove('header--hidden');
-    }
+    var delta = scrollY - lastScrollY;
     lastScrollY = scrollY;
+
+    if (scrollY <= topZone) {
+      header.classList.remove('header--hidden');
+      accDown = accUp = 0;
+    } else if (delta > 0) {
+      accDown += delta;
+      accUp = 0;
+      if (accDown >= threshold) {
+        header.classList.add('header--hidden');
+        accDown = 0;
+      }
+    } else if (delta < 0) {
+      accUp += -delta;
+      accDown = 0;
+      if (accUp >= threshold) {
+        header.classList.remove('header--hidden');
+        accUp = 0;
+      }
+    }
     ticking = false;
   }
 
   function onScroll() {
     if (!ticking) {
-      requestAnimationFrame(updateHeader);
       ticking = true;
+      requestAnimationFrame(updateHeader);
     }
   }
 
   window.addEventListener('scroll', onScroll, { passive: true });
-  mobile.addEventListener('change', updateHeader);
+  mobile.addEventListener('change', function() {
+    lastScrollY = window.scrollY || window.pageYOffset;
+    accDown = accUp = 0;
+    updateHeader();
+  });
   updateHeader();
 }
 
