@@ -64,7 +64,7 @@ a:hover {
   border: 0;
 }
 
-/* --- Sticky Header --- */
+/* --- Sticky / Fixed Header --- */
 .header {
   position: sticky;
   top: 0;
@@ -73,6 +73,19 @@ a:hover {
   backdrop-filter: blur(10px);
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
   animation: slideDown 0.5s ease;
+}
+
+/* На мобильных — шапка всегда прижата к верху при прокрутке (fixed) */
+@media (max-width: 599px) {
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  body {
+    padding-top: 80px;
+  }
 }
 
 @keyframes slideDown {
