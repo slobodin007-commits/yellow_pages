@@ -10,6 +10,9 @@
   <meta property="og:description" content="קטלוג חנויות עם קופונים והנחות. הצעות משתלמות בישראל.">
   <meta property="og:type" content="website">
   <link rel="stylesheet" href="styles.css">
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8042664823664503"
+     crossorigin="anonymous"></script>
 </head>
 <body>
   <header class="header">
@@ -49,7 +52,16 @@
     <section class="ad-section">
       <div class="ad-card">
         <span class="ad-label" id="ad-label">פרסום / שותף השבוע</span>
-        <p class="ad-placeholder" id="ad-placeholder">כאן יכול להיות הבאנר שלך. <a href="#contacts" id="ad-contact-link">צרו קשר</a></p>
+        <!-- Замените data-ad-slot на ID блока из личного кабинета AdSense -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-8042664823664503"
+             data-ad-slot="1234567890"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
       </div>
     </section>
 
