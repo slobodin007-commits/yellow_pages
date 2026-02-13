@@ -1,6 +1,7 @@
 /**
- * YellowPages Info — Улучшенная версия
- * 4 языка (RU, EN, HE, AR) + Анимации + Иконки категорий
+ * YellowPages Info — Финальная кроссбраузер версия
+ * 4 языка (RU, EN, HE, AR) + Иконки категорий + Купоны + Поиск
+ * FIX: корректная высота fixed header во всех браузерах
  */
 
 // ========== Язык и локализация ==========
@@ -116,11 +117,11 @@ const STORES_DATA = [
     category: { ru: 'одежда', en: 'clothing', he: 'ביגוד', ar: 'ملابس' },
     description: {
       ru: 'Женская и мужская одежда, аксессуары. Сезонные распродажи.',
-      en: 'Women\'s and men\'s clothing, accessories. Seasonal sales.',
+      en: "Women's and men's clothing, accessories. Seasonal sales.",
       he: 'ביגוד נשים וגברים, אקססוריז. מבצעי עונה.',
       ar: 'ملابس نسائية ورجالية، إكسسوارات. تخفيضات موسمية.'
     },
-    hours: { ru: 'Пн–Вс 10:00–21:00', en: 'Mon–Sun 10:00–21:00', he: 'א\'-ש\' 10:00–21:00', ar: 'الإثنين–الأحد 10:00–21:00' },
+    hours: { ru: 'Пн–Вс 10:00–21:00', en: 'Mon–Sun 10:00–21:00', he: "א'-ש' 10:00–21:00", ar: 'الإثنين–الأحد 10:00–21:00' },
     coupon: 'YELLOW15',
     couponDesc: { ru: 'Скидка 15% на первую покупку', en: '15% off first purchase', he: '15% הנחה על קנייה ראשונה', ar: 'خصم 15% على أول عملية شراء' },
     phone: '+1234567801',
@@ -137,7 +138,7 @@ const STORES_DATA = [
       he: 'סניקרס, נעליים, מגפיים. מדידה חינם.',
       ar: 'أحذية رياضية، أحذية، حذاء طويل. تركيب مجاني.'
     },
-    hours: { ru: 'Пн–Сб 9:00–20:00', en: 'Mon–Sat 9:00–20:00', he: 'א\'-ו\' 9:00–20:00', ar: 'الإثنين–السبت 9:00–20:00' },
+    hours: { ru: 'Пн–Сб 9:00–20:00', en: 'Mon–Sat 9:00–20:00', he: "א'-ו' 9:00–20:00", ar: 'الإثنين–السبت 9:00–20:00' },
     coupon: 'FAMILY20',
     couponDesc: { ru: '20% на вторую пару', en: '20% off second pair', he: '20% על זוג שני', ar: '20% على الزوج الثاني' },
     phone: '+1234567802',
@@ -147,7 +148,7 @@ const STORES_DATA = [
   {
     id: 3,
     name: { ru: 'Красота и Косметика', en: 'Beauty & Cosmetics', he: 'יופי וקוסמטיקה', ar: 'الجمال ومستحضرات التجميل' },
-    category: { ru: 'косметика', en: 'cosmetics', he: 'קוסמטיקה', ar: 'مستحضرات تجميل' },
+    category: { ru: 'косметика', en: 'cosmetics', he: 'קוסמטика', ar: 'مستحضرات تجميل' },
     description: {
       ru: 'Парфюмерия, уход, косметика. Тестеры в подарок.',
       en: 'Perfume, skincare, makeup. Free testers.',
@@ -168,10 +169,10 @@ const STORES_DATA = [
     description: {
       ru: 'Смартфоны, ноутбуки, гаджеты. Рассрочка 0%.',
       en: 'Smartphones, laptops, gadgets. 0% financing.',
-      he: 'סמארטפונים, מחשבים, גאדג\'טים. תשלום 0% ריבית.',
+      he: "סמארטפונים, מחשבים, גאדג'טים. תשלום 0% ריבית.",
       ar: 'هواتف ذكية، أجهزة كمبيوتر محمولة، أدوات. تمويل 0%.'
     },
-    hours: { ru: 'Пн–Вс 10:00–21:00', en: 'Mon–Sun 10:00–21:00', he: 'א\'-ש\' 10:00–21:00', ar: 'الإثنين–الأحد 10:00–21:00' },
+    hours: { ru: 'Пн–Вс 10:00–21:00', en: 'Mon–Sun 10:00–21:00', he: "א'-ש' 10:00–21:00", ar: 'الإثنين–الأحد 10:00–21:00' },
     coupon: 'TECH500',
     couponDesc: { ru: '500₽ скидка от 15000₽', en: '500₽ off over 15000₽', he: '500₪ הנחה מעל 15000₪', ar: 'خصم 500₽ فوق 15000₽' },
     phone: '+1234567804',
@@ -180,7 +181,7 @@ const STORES_DATA = [
   },
   {
     id: 5,
-    name: { ru: 'Подарки и Сувениры', en: 'Gifts & Souvenirs', he: 'מתנות סוונירים', ar: 'الهدايا والتذكارات' },
+    name: { ru: 'Подарки и Сувениры', en: 'Gifts & Souvenirs', he: 'מתנות', ar: 'هدايا' },
     category: { ru: 'подарки', en: 'gifts', he: 'מתנות', ar: 'هدايا' },
     description: {
       ru: 'Подарочные наборы, декор. Упаковка в подарок.',
@@ -188,7 +189,7 @@ const STORES_DATA = [
       he: 'סטים למתנה, דקור. עטיפה במתנה.',
       ar: 'مجموعات هدايا، ديكور. تغليف مجاني.'
     },
-    hours: { ru: 'Пн–Пт 11:00–19:00', en: 'Mon–Fri 11:00–19:00', he: 'א\'-ה\' 11:00–19:00', ar: 'الإثنين–الجمعة 11:00–19:00' },
+    hours: { ru: 'Пн–Пт 11:00–19:00', en: 'Mon–Fri 11:00–19:00', he: "א'-ה' 11:00–19:00", ar: 'الإثنين–الجمعة 11:00–19:00' },
     coupon: 'GIFT25',
     couponDesc: { ru: '25% на наборы', en: '25% off sets', he: '25% על סטים', ar: '25% على المجموعات' },
     phone: '+1234567805',
@@ -205,7 +206,7 @@ const STORES_DATA = [
       he: 'מאפים טריים, קפה, ארוחות בוקר. אווירה נעימה.',
       ar: 'معجنات طازجة، قهوة، إفطار. أجواء مريحة.'
     },
-    hours: { ru: 'Пн–Вс 8:00–22:00', en: 'Mon–Sun 8:00–22:00', he: 'א\'-ש\' 8:00–22:00', ar: 'الإثنين–الأحد 8:00–22:00' },
+    hours: { ru: 'Пн–Вс 8:00–22:00', en: 'Mon–Sun 8:00–22:00', he: "א'-ש' 8:00–22:00", ar: 'الإثنين–الأحد 8:00–22:00' },
     coupon: 'COFFEE2',
     couponDesc: { ru: '2-й кофе в подарок', en: '2nd coffee free', he: 'קפה שני במתנה', ar: 'القهوة الثانية مجاناً' },
     phone: '+1234567806',
@@ -222,7 +223,7 @@ const STORES_DATA = [
       he: 'ביגוד ספורט, מכשירי כושר, אקססוריז.',
       ar: 'ملابس رياضية، معدات، إكسسوارات.'
     },
-    hours: { ru: 'Пн–Вс 10:00–20:00', en: 'Mon–Sun 10:00–20:00', he: 'א\'-ש\' 10:00–20:00', ar: 'الإثنين–الأحد 10:00–20:00' },
+    hours: { ru: 'Пн–Вс 10:00–20:00', en: 'Mon–Sun 10:00–20:00', he: "א'-ש' 10:00–20:00", ar: 'الإثنين–الأحد 10:00–20:00' },
     coupon: 'SPORT30',
     couponDesc: { ru: '30% на одежду', en: '30% off clothing', he: '30% על ביגוד', ar: '30% على الملابس' },
     phone: '+1234567807',
@@ -239,7 +240,7 @@ const STORES_DATA = [
       he: 'ביגוד, צעצועים, מוצרים לבית הספר.',
       ar: 'ملابس، ألعاب، مستلزمات مدرسية.'
     },
-    hours: { ru: 'Пн–Вс 10:00–21:00', en: 'Mon–Sun 10:00–21:00', he: 'א\'-ש\' 10:00–21:00', ar: 'الإثنين–الأحد 10:00–21:00' },
+    hours: { ru: 'Пн–Вс 10:00–21:00', en: 'Mon–Sun 10:00–21:00', he: "א'-ש' 10:00–21:00", ar: 'الإثنين–الأحد 10:00–21:00' },
     coupon: 'KIDS20',
     couponDesc: { ru: '20% на игрушки', en: '20% off toys', he: '20% על צעצועים', ar: '20% على الألعاب' },
     phone: '+1234567808',
@@ -251,14 +252,39 @@ const STORES_DATA = [
 // DOM элементы
 let searchInput, storesGrid, noResultsEl, toastEl;
 
-// ====== FIX: синхронизация высоты шапки (чтобы fixed header не налезал на hero) ======
-function syncHeaderHeight() {
+// ========== Кроссбраузерный фикс высоты header ==========
+function setupHeaderHeightSystem() {
   const header = document.querySelector('.header');
   if (!header) return;
 
-  // На больших экранах header sticky, padding не нужен — но переменную держим актуальной
-  const h = header.offsetHeight || 0;
-  document.documentElement.style.setProperty('--header-h', h + 'px');
+  const update = () => {
+    const height = header.offsetHeight || 0;
+    document.documentElement.style.setProperty('--header-h', height + 'px');
+  };
+
+  // сразу
+  update();
+
+  // после полной загрузки (картинки/шрифты)
+  window.addEventListener('load', update);
+
+  // поворот/изменение размеров
+  window.addEventListener('resize', update);
+
+  // логотип может загрузиться позже
+  const logo = document.querySelector('.logo-img');
+  if (logo && !logo.complete) {
+    logo.addEventListener('load', update, { once: true });
+  }
+
+  // самое важное — отслеживание изменений размера header
+  if ('ResizeObserver' in window) {
+    const ro = new ResizeObserver(update);
+    ro.observe(header);
+  } else {
+    // fallback для очень старых браузеров
+    setInterval(update, 700);
+  }
 }
 
 // Получить текущую UI строку
@@ -303,9 +329,6 @@ function createStoreCard(store) {
   card.className = 'store-card';
   card.dataset.storeId = store.id;
 
-  const searchText = [s.name, s.category, s.description].join(' ').toLowerCase();
-  card.dataset.search = searchText;
-
   card.innerHTML = `
     <img class="store-card-image" src="${escapeHtml(s.image)}" alt="${escapeHtml(s.name)}" loading="lazy">
     <div class="store-card-body">
@@ -315,7 +338,7 @@ function createStoreCard(store) {
       <p class="store-card-hours">🕐 ${escapeHtml(s.hours)}</p>
 
       <div class="store-coupon-area">
-        <button type="button" class="store-coupon-toggle" data-store-id="${store.id}" aria-expanded="false">
+        <button type="button" class="store-coupon-toggle" aria-expanded="false">
           ${escapeHtml(t('showCoupon'))}
         </button>
         <div class="store-coupon-reveal" hidden>
@@ -328,28 +351,22 @@ function createStoreCard(store) {
       </div>
 
       <div class="store-actions">
-        <a href="tel:${escapeHtml(s.phone)}" class="store-btn store-btn-call">
-          📞 ${escapeHtml(t('call'))}
-        </a>
-        <a href="${escapeHtml(s.mapUrl)}" class="store-btn store-btn-map" target="_blank" rel="noopener">
-          📍 ${escapeHtml(t('directions'))}
-        </a>
+        <a href="tel:${escapeHtml(s.phone)}" class="store-btn store-btn-call">📞 ${escapeHtml(t('call'))}</a>
+        <a href="${escapeHtml(s.mapUrl)}" class="store-btn store-btn-map" target="_blank" rel="noopener">📍 ${escapeHtml(t('directions'))}</a>
       </div>
     </div>
   `;
 
-  // Обработчик купона
   const toggleBtn = card.querySelector('.store-coupon-toggle');
   const revealEl = card.querySelector('.store-coupon-reveal');
 
   toggleBtn.addEventListener('click', function() {
     const isOpen = !revealEl.hidden;
     revealEl.hidden = isOpen;
-    toggleBtn.setAttribute('aria-expanded', !isOpen);
+    toggleBtn.setAttribute('aria-expanded', String(!isOpen));
     toggleBtn.textContent = revealEl.hidden ? t('showCoupon') : t('hideCoupon');
   });
 
-  // Копирование кода
   const copyBtn = card.querySelector('.store-copy-btn');
   copyBtn.addEventListener('click', function() {
     copyToClipboard(this.dataset.copy);
@@ -365,34 +382,28 @@ function copyToClipboard(text) {
     navigator.clipboard.writeText(text);
     return;
   }
-
   const textarea = document.createElement('textarea');
   textarea.value = text;
   textarea.style.position = 'fixed';
   textarea.style.opacity = '0';
   document.body.appendChild(textarea);
   textarea.select();
-
-  try {
-    document.execCommand('copy');
-  } finally {
-    document.body.removeChild(textarea);
-  }
+  try { document.execCommand('copy'); }
+  finally { document.body.removeChild(textarea); }
 }
 
-// Показ toast
+// Toast
 function showToast(message) {
   if (!toastEl) return;
-
   toastEl.textContent = message;
   toastEl.hidden = false;
   toastEl.classList.add('is-visible');
 
   clearTimeout(toastEl._timer);
-  toastEl._timer = setTimeout(function() {
+  toastEl._timer = setTimeout(() => {
     toastEl.classList.remove('is-visible');
-    setTimeout(() => { toastEl.hidden = true; }, 400);
-  }, 2000);
+    setTimeout(() => { toastEl.hidden = true; }, 350);
+  }, 1800);
 }
 
 // Отрисовка магазинов
@@ -410,9 +421,7 @@ function renderStores(query) {
       })
     : STORES_DATA;
 
-  filtered.forEach(store => {
-    storesGrid.appendChild(createStoreCard(store));
-  });
+  filtered.forEach(store => storesGrid.appendChild(createStoreCard(store)));
 
   noResultsEl.textContent = t('noResults');
   noResultsEl.hidden = filtered.length > 0;
@@ -439,9 +448,7 @@ function updateUI() {
     if (el) el.textContent = els[id];
   });
 
-  if (searchInput) {
-    searchInput.placeholder = t('searchPlaceholder');
-  }
+  if (searchInput) searchInput.placeholder = t('searchPlaceholder');
 }
 
 // Установить язык
@@ -451,36 +458,37 @@ function setLang(lang) {
   currentLang = lang;
   localStorage.setItem('yp-lang', lang);
 
-  // Обновить HTML атрибуты
   const html = document.documentElement;
   html.lang = lang;
   html.dir = RTL_LANGS.includes(lang) ? 'rtl' : 'ltr';
 
-  // Обновить UI
   updateUI();
   renderStores(searchInput ? searchInput.value : '');
 
-  // Активная кнопка языка
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.lang === lang);
   });
 
-  // FIX: после смены языка высота шапки может измениться
-  syncHeaderHeight();
+  // после смены языка высота шапки может измениться
+  // (ResizeObserver тоже поймает, но вызов не мешает)
+  const header = document.querySelector('.header');
+  if (header) {
+    document.documentElement.style.setProperty('--header-h', header.offsetHeight + 'px');
+  }
 }
 
 // Шапка на мобильном: скрывается при прокрутке вниз, появляется при прокрутке вверх
 function initHeaderScroll() {
-  var header = document.querySelector('.header');
+  const header = document.querySelector('.header');
   if (!header) return;
 
-  var lastScrollY = window.scrollY || window.pageYOffset;
-  var accDown = 0;
-  var accUp = 0;
-  var threshold = 18;
-  var topZone = 60;
-  var ticking = false;
-  var mobile = window.matchMedia('(max-width: 599px)');
+  let lastScrollY = window.scrollY || window.pageYOffset;
+  let accDown = 0;
+  let accUp = 0;
+  const threshold = 18;
+  const topZone = 60;
+  let ticking = false;
+  const mobile = window.matchMedia('(max-width: 599px)');
 
   function updateHeader() {
     if (!mobile.matches) {
@@ -490,8 +498,8 @@ function initHeaderScroll() {
       return;
     }
 
-    var scrollY = window.scrollY || window.pageYOffset;
-    var delta = scrollY - lastScrollY;
+    const scrollY = window.scrollY || window.pageYOffset;
+    const delta = scrollY - lastScrollY;
     lastScrollY = scrollY;
 
     if (scrollY <= topZone) {
@@ -525,12 +533,10 @@ function initHeaderScroll() {
 
   window.addEventListener('scroll', onScroll, { passive: true });
 
-  mobile.addEventListener('change', function() {
+  mobile.addEventListener('change', () => {
     lastScrollY = window.scrollY || window.pageYOffset;
     accDown = accUp = 0;
     updateHeader();
-    // FIX: при смене режима (поворот/ширина) пересчитай высоту
-    syncHeaderHeight();
   });
 
   updateHeader();
@@ -543,12 +549,11 @@ function init() {
   noResultsEl = document.getElementById('no-results');
   toastEl = document.getElementById('toast');
 
+  // Система высоты шапки — ВКЛЮЧАЕМ ПЕРВОЙ
+  setupHeaderHeightSystem();
+
   // Установить сохранённый язык
   setLang(currentLang);
-
-  // FIX: первая синхронизация высоты шапки и при ресайзе
-  syncHeaderHeight();
-  window.addEventListener('resize', syncHeaderHeight);
 
   // На мобильном: шапка уезжает вверх при прокрутке вниз, появляется при прокрутке вверх
   initHeaderScroll();
@@ -569,6 +574,9 @@ function init() {
       setLang(this.dataset.lang);
     });
   });
+
+  // Рендер
+  renderStores('');
 }
 
 // Запуск
