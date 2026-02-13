@@ -470,11 +470,11 @@ function initHeaderScroll() {
       return;
     }
     var scrollY = window.scrollY || window.pageYOffset;
-    if (scrollY <= 60) {
+    if (scrollY <= 50) {
       header.classList.remove('header--hidden');
-    } else if (scrollY > lastScrollY + 40) {
+    } else if (scrollY > lastScrollY + 8) {
       header.classList.add('header--hidden');
-    } else if (scrollY < lastScrollY - 40) {
+    } else if (scrollY < lastScrollY - 8) {
       header.classList.remove('header--hidden');
     }
     lastScrollY = scrollY;
