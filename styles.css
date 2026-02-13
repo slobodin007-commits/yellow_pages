@@ -1,6 +1,6 @@
 /* ============================================
    YellowPages Info — Финальная версия
-   Mobile-first + фикс высоты header
+   Mobile-first + фикс высоты header (кроссбраузер)
    ============================================ */
 
 /* --- Reset / Base --- */
@@ -45,15 +45,21 @@ body {
     top: 0;
     left: 0;
     right: 0;
+
+    /* важно для разных браузеров */
+    z-index: 1000;
+
     transition: transform 0.3s ease;
+    will-change: transform;
   }
 
   .header.header--hidden {
     transform: translateY(-100%);
   }
 
+  /* Кроссбраузерный отступ: header + safe-area */
   body {
-    padding-top: var(--header-h); /* <-- ключевой фикс */
+    padding-top: calc(var(--header-h) + env(safe-area-inset-top, 0px));
   }
 }
 
