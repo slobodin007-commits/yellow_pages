@@ -98,18 +98,21 @@ a:hover {
 }
 
 .logo {
-  font-size: 1.25rem;
-  font-weight: 700;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  display: inline-flex;
+  align-items: center;
   text-decoration: none;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .logo:hover {
   transform: scale(1.05);
+  opacity: 0.9;
+}
+
+.logo-img {
+  height: 50px;
+  width: auto;
+  display: block;
 }
 
 .logo-text {
