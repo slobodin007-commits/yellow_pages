@@ -133,10 +133,6 @@ a:hover {
   display: block;
 }
 
-.logo-text {
-  display: inline-block;
-}
-
 .nav {
   display: flex;
   gap: 0.5rem;
@@ -718,8 +714,8 @@ main {
     padding: 1rem 1.5rem;
   }
 
-  .logo {
-    font-size: 1.5rem;
+  .logo-img {
+    height: 56px;
   }
 
   .nav-link {
