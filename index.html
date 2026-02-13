@@ -12,6 +12,10 @@
   <meta property="og:url" content="https://yellowpages-info.com">
   <link rel="icon" type="image/svg+xml" href="favicon.ico">
   <link rel="stylesheet" href="styles.css">
+  
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8042664823664503"
+     crossorigin="anonymous"></script>
 </head>
 <body>
   <!-- Sticky Header -->
@@ -21,53 +25,72 @@
         <span class="logo-text">YellowPages.info</span>
       </a>
       <nav class="nav">
-        <a href="#stores" class="nav-link">Магазины</a>
-        <a href="#stores" class="nav-link">Купоны</a>
-        <a href="#contacts" class="nav-link">Контакты</a>
+        <a href="#stores" class="nav-link" id="nav-stores">Магазины</a>
+        <a href="#stores" class="nav-link" id="nav-coupons">Купоны</a>
+        <a href="#contacts" class="nav-link" id="nav-contacts">Контакты</a>
+        <!-- Language Switcher -->
+        <div class="lang-switcher">
+          <button type="button" class="lang-btn active" data-lang="ru" title="Русский">RU</button>
+          <button type="button" class="lang-btn" data-lang="en" title="English">EN</button>
+          <button type="button" class="lang-btn" data-lang="he" title="עברית">עב</button>
+          <button type="button" class="lang-btn" data-lang="ar" title="العربية">ع</button>
+        </div>
       </nav>
     </div>
   </header>
 
   <main>
-    <!-- Hero Section -->
+    <!-- Hero Section with Background -->
     <section class="hero">
-      <h1 class="hero-title">YellowPages Info — локальные скидки рядом</h1>
-      <p class="hero-desc">Находите купоны и скидки в магазинах рядом с вами. Один каталог — все выгодные предложения вашего города.</p>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1 class="hero-title" id="hero-title">YellowPages Info — локальные скидки рядом</h1>
+        <p class="hero-desc" id="hero-desc">Находите купоны и скидки в магазинах рядом с вами. Один каталог — все выгодные предложения вашего города.</p>
+      </div>
     </section>
 
     <!-- Search Section -->
     <section class="search-section">
-      <label for="search-input" class="visually-hidden">Поиск по магазинам</label>
+      <label for="search-input" class="visually-hidden" id="search-label">Поиск по магазинам</label>
       <input type="search" id="search-input" class="search-input" placeholder="Поиск по названию или категории..." autocomplete="off">
     </section>
 
     <!-- Stores Grid -->
     <section id="stores" class="stores-section">
-      <h2 class="section-title">Магазины с купонами</h2>
+      <h2 class="section-title" id="stores-title">Магазины с купонами</h2>
       <div id="stores-grid" class="stores-grid">
         <!-- Карточки магазинов будут добавлены через JS -->
       </div>
       <p id="no-results" class="no-results" hidden>По вашему запросу ничего не найдено.</p>
     </section>
 
-    <!-- Ad Section -->
+    <!-- Ad Section (AdSense) -->
     <section class="ad-section">
       <div class="ad-card">
-        <span class="ad-label">Реклама / Партнёр недели</span>
-        <p class="ad-placeholder">Здесь может быть ваш баннер. <a href="#contacts" class="ad-contact-link">Связаться с нами</a></p>
+        <span class="ad-label" id="ad-label">Реклама</span>
+        <!-- AdSense Auto Ads будут показываться автоматически -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-format="fluid"
+             data-ad-layout-key="-fb+5w+4e-db+86"
+             data-ad-client="ca-pub-8042664823664503"
+             data-ad-slot="1234567890"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
       </div>
     </section>
 
     <!-- Footer / Contacts -->
     <footer id="contacts" class="footer">
-      <h2 class="section-title">Контакты</h2>
-      <p class="footer-cta">Хотите добавить магазин? Напишите нам!</p>
+      <h2 class="section-title" id="contacts-title">Контакты</h2>
+      <p class="footer-cta" id="footer-cta">Хотите добавить магазин? Напишите нам!</p>
       <div class="footer-links">
         <a href="https://wa.me/1234567890" class="footer-link" target="_blank" rel="noopener">WhatsApp</a>
         <a href="tel:+1234567890" class="footer-link">+1 234-567-890</a>
         <a href="mailto:info@yellowpages-info.com" class="footer-link">info@yellowpages-info.com</a>
       </div>
-      <p class="footer-copy">&copy; 2024 YellowPages Info. Все права защищены.</p>
+      <p class="footer-copy">&copy; 2024 YellowPages Info. <span id="footer-rights">Все права защищены</span>.</p>
     </footer>
   </main>
 
