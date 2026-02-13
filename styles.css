@@ -194,6 +194,7 @@ main {
   flex: 1;
   display: flex;
   flex-direction: column;
+  min-height: 0; /* важно для корректного flex */
 }
 
 .store-card-title {
@@ -221,8 +222,17 @@ main {
 }
 
 /* --- Coupon --- */
+
+/* блок купона прижат вниз и одинаково работает во всех карточках */
+.store-coupon-area {
+  margin-top: auto;      /* <-- главное: толкаем купон+кнопки вниз */
+  padding-top: 0.5rem;
+}
+
+/* кнопка купона одинаковой высоты */
 .store-coupon-toggle {
   width: 100%;
+  min-height: 44px;
   padding: 0.5rem;
   border-radius: 10px;
   border: none;
@@ -230,6 +240,10 @@ main {
   color: white;
   font-weight: 600;
   cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .store-coupon-reveal {
@@ -258,17 +272,26 @@ main {
 /* --- Actions --- */
 .store-actions {
   display: flex;
-  gap: 0.4rem;
-  margin-top: auto;
+  gap: 0.5rem;
+  margin-top: 0.6rem; /* небольшой отступ от купона */
 }
 
+/* обе кнопки одинаковые, не упираются в края */
 .store-btn {
   flex: 1;
-  padding: 0.5rem;
+  min-width: 0;          /* фикс “упирания”/переполнения */
+  min-height: 44px;      /* одинаковая высота */
+  padding: 0.6rem 0.7rem;
   font-size: 0.75rem;
-  border-radius: 10px;
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   text-align: center;
   text-decoration: none;
+  box-sizing: border-box;
 }
 
 .store-btn-call {
@@ -279,6 +302,7 @@ main {
 .store-btn-map {
   background: #f0f0f0;
   color: #333;
+  border: 1px solid #e2e2e2; /* чтобы визуально не “липла” к краю */
 }
 
 /* --- Footer --- */
