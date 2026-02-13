@@ -89,7 +89,7 @@ a:hover {
     box-shadow: none;
   }
   body {
-    padding-top: 96px;
+    padding-top: 90px;
   }
 }
 
@@ -128,7 +128,7 @@ a:hover {
 }
 
 .logo-img {
-  height: 200px;
+  height: 64px;
   width: auto;
   display: block;
 }
@@ -715,7 +715,7 @@ main {
   }
 
   .logo-img {
-    height: 240px;
+    height: 80px;
   }
 
   .nav-link {
