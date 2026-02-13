@@ -245,15 +245,15 @@ main {
   color: #1a1a1a;
 }
 
-/* --- Stores grid: на мобильном сразу 2 колонки (два квадратика по горизонтали, по вертикали скролл) --- */
+/* --- Stores grid: на мобильном маленькие квадратики 2 в ряд, отступы от краёв как на эскизе --- */
 .stores-section {
-  padding: 0.5rem 0 1rem;
+  padding: 0.5rem 0.75rem 1rem;
 }
 
 .stores-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0.5rem;
+  gap: 0.65rem;
 }
 
 .no-results {
@@ -262,17 +262,17 @@ main {
   padding: 2rem 1rem;
 }
 
-/* --- Store card (на мобильном компактные квадратики в сетке 2 колонки) --- */
+/* --- Store card (на мобильном маленькие квадратики, по 2 в ряд) --- */
 .store-card {
   background: #fff;
-  border-radius: 12px;
+  border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
   transition: box-shadow 0.2s ease;
 }
 
 .store-card:hover {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .store-card-image {
@@ -282,13 +282,20 @@ main {
   background: #e8e8e8;
 }
 
+/* На мобильном картинка ниже — карточка как маленький квадратик (примерно 2.5–3 ряда влезают на экран) */
+@media (max-width: 599px) {
+  .store-card-image {
+    aspect-ratio: 3 / 4;
+  }
+}
+
 .store-card-body {
-  padding: 0.5rem;
+  padding: 0.35rem 0.4rem;
 }
 
 .store-card-title {
-  margin: 0 0 0.2rem;
-  font-size: 0.8125rem;
+  margin: 0 0 0.15rem;
+  font-size: 0.6875rem;
   font-weight: 700;
   color: #1a1a1a;
   line-height: 1.2;
@@ -300,46 +307,46 @@ main {
 
 .store-card-category {
   display: inline-block;
-  margin-bottom: 0.35rem;
-  font-size: 0.6875rem;
+  margin-bottom: 0.25rem;
+  font-size: 0.625rem;
   color: #1a73e8;
   background: #e8f0fe;
-  padding: 0.15rem 0.35rem;
+  padding: 0.1rem 0.25rem;
   border-radius: 4px;
 }
 
 .store-card-desc {
-  margin: 0 0 0.4rem;
-  font-size: 0.6875rem;
+  margin: 0 0 0.25rem;
+  font-size: 0.625rem;
   color: #555;
-  line-height: 1.3;
+  line-height: 1.25;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
 .store-card-hours {
-  margin: 0 0 0.4rem;
-  font-size: 0.6875rem;
+  margin: 0 0 0.25rem;
+  font-size: 0.625rem;
   color: #666;
 }
 
 .store-coupon-area {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.35rem;
 }
 
 .store-coupon-toggle {
   width: 100%;
-  padding: 0.4rem 0.5rem;
-  font-size: 0.75rem;
+  padding: 0.3rem 0.4rem;
+  font-size: 0.625rem;
   font-weight: 600;
   color: #fff;
   background: #1a73e8;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
-  min-height: 36px;
+  min-height: 28px;
   transition: background 0.2s ease;
 }
 
@@ -352,32 +359,32 @@ main {
 }
 
 .store-coupon-reveal {
-  margin-top: 0.4rem;
-  padding: 0.5rem;
+  margin-top: 0.3rem;
+  padding: 0.35rem;
   background: #f8f9fa;
-  border-radius: 8px;
+  border-radius: 6px;
   border: 1px dashed #ccc;
 }
 
 .store-coupon-code {
-  font-size: 1rem;
+  font-size: 0.8125rem;
   font-weight: 700;
   font-family: ui-monospace, monospace;
   letter-spacing: 0.05em;
   color: #1a1a1a;
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.25rem;
 }
 
 .store-copy-btn {
-  padding: 0.35rem 0.5rem;
-  font-size: 0.6875rem;
+  padding: 0.25rem 0.35rem;
+  font-size: 0.625rem;
   background: #fff;
   border: 1px solid #1a73e8;
   color: #1a73e8;
-  border-radius: 6px;
+  border-radius: 4px;
   cursor: pointer;
-  min-height: 32px;
-  min-width: 32px;
+  min-height: 26px;
+  min-width: 26px;
 }
 
 .store-copy-btn:hover {
@@ -387,22 +394,22 @@ main {
 .store-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem;
+  gap: 0.25rem;
 }
 
 .store-btn {
   flex: 1;
   min-width: 0;
-  padding: 0.4rem 0.5rem;
-  font-size: 0.6875rem;
+  padding: 0.25rem 0.35rem;
+  font-size: 0.5625rem;
   font-weight: 600;
   text-align: center;
-  border-radius: 8px;
-  min-height: 32px;
+  border-radius: 6px;
+  min-height: 26px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.2rem;
+  gap: 0.15rem;
   text-decoration: none;
   border: none;
   cursor: pointer;
