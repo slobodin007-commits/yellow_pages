@@ -1,105 +1,78 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>YellowPages Info — הנחות מקומיות לידך | Local discounts Israel</title>
-  <meta name="description" content="קטלוג חנויות מקומיות עם קופונים והנחות. מצאו מבצעים בארץ — ביגוד, אלקטרוניקה, בתי קפה ועוד. Catalog of local stores with coupons in Israel.">
-  <!-- Open Graph / SEO (multilingual) -->
-  <meta property="og:title" content="YellowPages Info — הנחות מקומיות לידך">
-  <meta property="og:description" content="קטלוג חנויות עם קופונים והנחות. הצעות משתלמות בישראל.">
+  <title>YellowPages Info — локальные скидки рядом | Каталог магазинов с купонами</title>
+  <meta name="description" content="Находите купоны и скидки в магазинах рядом с вами. Каталог локальных магазинов с выгодными предложениями — одежда, обувь, электроника, кафе и многое другое.">
+  <!-- Open Graph / SEO -->
+  <meta property="og:title" content="YellowPages Info — локальные скидки рядом">
+  <meta property="og:description" content="Каталог магазинов с купонами и скидками. Выгодные предложения в вашем городе.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yellowpages-info.com">
+  <link rel="icon" type="image/svg+xml" href="favicon.ico">
   <link rel="stylesheet" href="styles.css">
-  <!-- Google AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8042664823664503"
-     crossorigin="anonymous"></script>
 </head>
 <body>
+  <!-- Sticky Header -->
   <header class="header">
     <div class="header-inner">
       <a href="#" class="logo">
-        <img src="images/yellowpages-info-logo.svg" alt="YellowPages Info" class="logo-img">
+        <span class="logo-text">YellowPages.info</span>
       </a>
       <nav class="nav">
-        <a href="#stores" class="nav-link" id="nav-stores">חנויות</a>
-        <a href="#stores" class="nav-link" id="nav-coupons">קופונים</a>
-        <a href="#contacts" class="nav-link" id="nav-contacts">צרו קשר</a>
-        <div class="lang-switcher" role="group" aria-label="בחירת שפה">
-          <button type="button" class="lang-btn active" data-lang="he" title="עברית">עב</button>
-          <button type="button" class="lang-btn" data-lang="ru" title="Русский">RU</button>
-          <button type="button" class="lang-btn" data-lang="en" title="English">EN</button>
-          <button type="button" class="lang-btn" data-lang="ar" title="العربية">ع</button>
-        </div>
+        <a href="#stores" class="nav-link">Магазины</a>
+        <a href="#stores" class="nav-link">Купоны</a>
+        <a href="#contacts" class="nav-link">Контакты</a>
       </nav>
     </div>
   </header>
 
   <main>
+    <!-- Hero Section -->
     <section class="hero">
-      <h1 class="hero-title" id="hero-title">YellowPages Info — הנחות מקומיות לידך</h1>
-      <p class="hero-desc" id="hero-desc">מצאו קופונים והנחות בחנויות לידכם. קטלוג אחד — כל ההצעות המשתלמות בעירכם.</p>
+      <h1 class="hero-title">YellowPages Info — локальные скидки рядом</h1>
+      <p class="hero-desc">Находите купоны и скидки в магазинах рядом с вами. Один каталог — все выгодные предложения вашего города.</p>
     </section>
 
+    <!-- Search Section -->
     <section class="search-section">
-      <label for="search-input" class="visually-hidden" id="search-label">חיפוש לפי חנויות</label>
-      <input type="search" id="search-input" class="search-input" placeholder="חיפוש לפי שם או קטגוריה..." autocomplete="off">
+      <label for="search-input" class="visually-hidden">Поиск по магазинам</label>
+      <input type="search" id="search-input" class="search-input" placeholder="Поиск по названию или категории..." autocomplete="off">
     </section>
 
+    <!-- Stores Grid -->
     <section id="stores" class="stores-section">
-      <h2 class="section-title" id="stores-title">חנויות עם קופונים</h2>
-      <div id="stores-grid" class="stores-grid"></div>
-      <p id="no-results" class="no-results" hidden>לא נמצאו תוצאות.</p>
+      <h2 class="section-title">Магазины с купонами</h2>
+      <div id="stores-grid" class="stores-grid">
+        <!-- Карточки магазинов будут добавлены через JS -->
+      </div>
+      <p id="no-results" class="no-results" hidden>По вашему запросу ничего не найдено.</p>
     </section>
 
+    <!-- Ad Section -->
     <section class="ad-section">
       <div class="ad-card">
-        <span class="ad-label" id="ad-label">פרסום / שותף השבוע</span>
-        <!-- Замените data-ad-slot на ID блока из личного кабинета AdSense -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-8042664823664503"
-             data-ad-slot="1234567890"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-          (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
+        <span class="ad-label">Реклама / Партнёр недели</span>
+        <p class="ad-placeholder">Здесь может быть ваш баннер. <a href="#contacts" class="ad-contact-link">Связаться с нами</a></p>
       </div>
     </section>
 
+    <!-- Footer / Contacts -->
     <footer id="contacts" class="footer">
-      <h2 class="section-title" id="contacts-title">צרו קשר</h2>
-      <p class="footer-cta" id="footer-cta">רוצים להוסיף חנות? כתבו לנו!</p>
+      <h2 class="section-title">Контакты</h2>
+      <p class="footer-cta">Хотите добавить магазин? Напишите нам!</p>
       <div class="footer-links">
-        <a href="https://wa.me/972501234567" class="footer-link" target="_blank" rel="noopener">WhatsApp</a>
-        <a href="tel:+972501234567" class="footer-link">+972 50 123-4567</a>
+        <a href="https://wa.me/1234567890" class="footer-link" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="tel:+1234567890" class="footer-link">+1 234-567-890</a>
         <a href="mailto:info@yellowpages-info.com" class="footer-link">info@yellowpages-info.com</a>
       </div>
-      <p class="footer-copy">&copy; YellowPages Info</p>
+      <p class="footer-copy">&copy; 2024 YellowPages Info. Все права защищены.</p>
     </footer>
   </main>
 
-  <div id="toast" class="toast" aria-live="polite" hidden>הקוד הועתק</div>
-
-  <!-- Баннеры слева и справа (видны только на широких экранах, в конце DOM для мобильной вёрстки) -->
-  <aside class="ad-sidebar ad-sidebar--left" aria-label="Реклама">
-    <ins class="adsbygoogle ad-sidebar__unit"
-         style="display:block"
-         data-ad-client="ca-pub-8042664823664503"
-         data-ad-slot="4072873570"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </aside>
-  <aside class="ad-sidebar ad-sidebar--right" aria-label="Реклама">
-    <ins class="adsbygoogle ad-sidebar__unit"
-         style="display:block"
-         data-ad-client="ca-pub-8042664823664503"
-         data-ad-slot="9381040577"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </aside>
+  <!-- Toast Notification -->
+  <div id="toast" class="toast" aria-live="polite" hidden>Код скопирован!</div>
 
   <script src="script.js"></script>
 </body>
