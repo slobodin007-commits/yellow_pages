@@ -1,6 +1,6 @@
 /* ============================================
    YellowPages Info — Финальная версия
-   Mobile-first + фикс высоты header (кроссбраузер)
+   Mobile-first + фикс высоты header (кроссбраузер) + ровная сетка
    ============================================ */
 
 /* --- Reset / Base --- */
@@ -46,7 +46,6 @@ body {
     left: 0;
     right: 0;
 
-    /* важно для разных браузеров */
     z-index: 1000;
 
     transition: transform 0.3s ease;
@@ -57,7 +56,6 @@ body {
     transform: translateY(-100%);
   }
 
-  /* Кроссбраузерный отступ: header + safe-area */
   body {
     padding-top: calc(var(--header-h) + env(safe-area-inset-top, 0px));
   }
@@ -189,47 +187,71 @@ main {
   object-fit: cover;
 }
 
+/* ровная высота карточки за счет управления контентом */
 .store-card-body {
   padding: 0.75rem;
   flex: 1;
   display: flex;
   flex-direction: column;
-  min-height: 0; /* важно для корректного flex */
+  min-height: 0;
 }
 
+/* --- Ровный заголовок: максимум 2 строки --- */
 .store-card-title {
   margin: 0 0 0.5rem;
   font-size: 0.9rem;
   font-weight: 700;
+  line-height: 1.25;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+
+  min-height: calc(2 * 1.25em); /* фиксируем высоту под 2 строки */
 }
 
+/* Категория */
 .store-card-category {
   font-size: 0.7rem;
   margin-bottom: 0.4rem;
   color: #667eea;
+  line-height: 1.2;
+
+  min-height: 1.2em; /* чтобы не прыгала высота */
 }
 
+/* --- Ровное описание: максимум 3 строки --- */
 .store-card-desc {
   font-size: 0.75rem;
-  margin-bottom: 0.5rem;
+  margin: 0 0 0.5rem;
   color: #666;
+  line-height: 1.35;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+
+  min-height: calc(3 * 1.35em); /* фиксируем высоту под 3 строки */
 }
 
+/* Часы */
 .store-card-hours {
   font-size: 0.7rem;
-  margin-bottom: 0.5rem;
+  margin: 0 0 0.5rem;
   color: #888;
+  line-height: 1.2;
+
+  min-height: 1.2em;
 }
 
 /* --- Coupon --- */
-
-/* блок купона прижат вниз и одинаково работает во всех карточках */
 .store-coupon-area {
-  margin-top: auto;      /* <-- главное: толкаем купон+кнопки вниз */
+  margin-top: auto; /* прижали купон+кнопки к низу */
   padding-top: 0.5rem;
 }
 
-/* кнопка купона одинаковой высоты */
 .store-coupon-toggle {
   width: 100%;
   min-height: 44px;
@@ -273,14 +295,13 @@ main {
 .store-actions {
   display: flex;
   gap: 0.5rem;
-  margin-top: 0.6rem; /* небольшой отступ от купона */
+  margin-top: 0.6rem;
 }
 
-/* обе кнопки одинаковые, не упираются в края */
 .store-btn {
   flex: 1;
-  min-width: 0;          /* фикс “упирания”/переполнения */
-  min-height: 44px;      /* одинаковая высота */
+  min-width: 0;
+  min-height: 44px;
   padding: 0.6rem 0.7rem;
   font-size: 0.75rem;
   border-radius: 12px;
@@ -302,7 +323,7 @@ main {
 .store-btn-map {
   background: #f0f0f0;
   color: #333;
-  border: 1px solid #e2e2e2; /* чтобы визуально не “липла” к краю */
+  border: 1px solid #e2e2e2;
 }
 
 /* --- Footer --- */
