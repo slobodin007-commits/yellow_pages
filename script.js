@@ -251,6 +251,16 @@ const STORES_DATA = [
 // DOM элементы
 let searchInput, storesGrid, noResultsEl, toastEl;
 
+// ====== FIX: синхронизация высоты шапки (чтобы fixed header не налезал на hero) ======
+function syncHeaderHeight() {
+  const header = document.querySelector('.header');
+  if (!header) return;
+
+  // На больших экранах header sticky, padding не нужен — но переменную держим актуальной
+  const h = header.offsetHeight || 0;
+  document.documentElement.style.setProperty('--header-h', h + 'px');
+}
+
 // Получить текущую UI строку
 function t(key) {
   return (UI[currentLang] && UI[currentLang][key]) || UI.ru[key] || '';
@@ -288,11 +298,11 @@ function escapeHtml(text) {
 function createStoreCard(store) {
   const s = getStore(store);
   const icon = getCategoryIcon(s.category);
-  
+
   const card = document.createElement('article');
   card.className = 'store-card';
   card.dataset.storeId = store.id;
-  
+
   const searchText = [s.name, s.category, s.description].join(' ').toLowerCase();
   card.dataset.search = searchText;
 
@@ -303,7 +313,7 @@ function createStoreCard(store) {
       <span class="store-card-category">${icon} ${escapeHtml(s.category)}</span>
       <p class="store-card-desc">${escapeHtml(s.description)}</p>
       <p class="store-card-hours">🕐 ${escapeHtml(s.hours)}</p>
-      
+
       <div class="store-coupon-area">
         <button type="button" class="store-coupon-toggle" data-store-id="${store.id}" aria-expanded="false">
           ${escapeHtml(t('showCoupon'))}
@@ -316,7 +326,7 @@ function createStoreCard(store) {
           </button>
         </div>
       </div>
-      
+
       <div class="store-actions">
         <a href="tel:${escapeHtml(s.phone)}" class="store-btn store-btn-call">
           📞 ${escapeHtml(t('call'))}
@@ -331,7 +341,7 @@ function createStoreCard(store) {
   // Обработчик купона
   const toggleBtn = card.querySelector('.store-coupon-toggle');
   const revealEl = card.querySelector('.store-coupon-reveal');
-  
+
   toggleBtn.addEventListener('click', function() {
     const isOpen = !revealEl.hidden;
     revealEl.hidden = isOpen;
@@ -355,14 +365,14 @@ function copyToClipboard(text) {
     navigator.clipboard.writeText(text);
     return;
   }
-  
+
   const textarea = document.createElement('textarea');
   textarea.value = text;
   textarea.style.position = 'fixed';
   textarea.style.opacity = '0';
   document.body.appendChild(textarea);
   textarea.select();
-  
+
   try {
     document.execCommand('copy');
   } finally {
@@ -373,11 +383,11 @@ function copyToClipboard(text) {
 // Показ toast
 function showToast(message) {
   if (!toastEl) return;
-  
+
   toastEl.textContent = message;
   toastEl.hidden = false;
   toastEl.classList.add('is-visible');
-  
+
   clearTimeout(toastEl._timer);
   toastEl._timer = setTimeout(function() {
     toastEl.classList.remove('is-visible');
@@ -388,22 +398,22 @@ function showToast(message) {
 // Отрисовка магазинов
 function renderStores(query) {
   if (!storesGrid || !noResultsEl) return;
-  
+
   const q = (query || '').trim().toLowerCase();
   storesGrid.innerHTML = '';
-  
-  const filtered = q 
+
+  const filtered = q
     ? STORES_DATA.filter(store => {
         const s = getStore(store);
         const searchText = [s.name, s.category, s.description].join(' ').toLowerCase();
         return searchText.includes(q);
       })
     : STORES_DATA;
-  
+
   filtered.forEach(store => {
     storesGrid.appendChild(createStoreCard(store));
   });
-  
+
   noResultsEl.textContent = t('noResults');
   noResultsEl.hidden = filtered.length > 0;
 }
@@ -423,12 +433,12 @@ function updateUI() {
     'nav-coupons': t('navCoupons'),
     'nav-contacts': t('navContacts')
   };
-  
+
   Object.keys(els).forEach(id => {
     const el = document.getElementById(id);
     if (el) el.textContent = els[id];
   });
-  
+
   if (searchInput) {
     searchInput.placeholder = t('searchPlaceholder');
   }
@@ -437,29 +447,33 @@ function updateUI() {
 // Установить язык
 function setLang(lang) {
   if (!LANGS.includes(lang)) return;
-  
+
   currentLang = lang;
   localStorage.setItem('yp-lang', lang);
-  
+
   // Обновить HTML атрибуты
   const html = document.documentElement;
   html.lang = lang;
   html.dir = RTL_LANGS.includes(lang) ? 'rtl' : 'ltr';
-  
+
   // Обновить UI
   updateUI();
   renderStores(searchInput ? searchInput.value : '');
-  
+
   // Активная кнопка языка
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.lang === lang);
   });
+
+  // FIX: после смены языка высота шапки может измениться
+  syncHeaderHeight();
 }
 
-// Шапка на мобильном: скрывается при прокрутке вниз, появляется при прокрутке вверх (накопление пикселей для медленной прокрутки)
+// Шапка на мобильном: скрывается при прокрутке вниз, появляется при прокрутке вверх
 function initHeaderScroll() {
   var header = document.querySelector('.header');
   if (!header) return;
+
   var lastScrollY = window.scrollY || window.pageYOffset;
   var accDown = 0;
   var accUp = 0;
@@ -475,6 +489,7 @@ function initHeaderScroll() {
       ticking = false;
       return;
     }
+
     var scrollY = window.scrollY || window.pageYOffset;
     var delta = scrollY - lastScrollY;
     lastScrollY = scrollY;
@@ -497,6 +512,7 @@ function initHeaderScroll() {
         accUp = 0;
       }
     }
+
     ticking = false;
   }
 
@@ -508,11 +524,15 @@ function initHeaderScroll() {
   }
 
   window.addEventListener('scroll', onScroll, { passive: true });
+
   mobile.addEventListener('change', function() {
     lastScrollY = window.scrollY || window.pageYOffset;
     accDown = accUp = 0;
     updateHeader();
+    // FIX: при смене режима (поворот/ширина) пересчитай высоту
+    syncHeaderHeight();
   });
+
   updateHeader();
 }
 
@@ -522,13 +542,17 @@ function init() {
   storesGrid = document.getElementById('stores-grid');
   noResultsEl = document.getElementById('no-results');
   toastEl = document.getElementById('toast');
-  
+
   // Установить сохранённый язык
   setLang(currentLang);
-  
+
+  // FIX: первая синхронизация высоты шапки и при ресайзе
+  syncHeaderHeight();
+  window.addEventListener('resize', syncHeaderHeight);
+
   // На мобильном: шапка уезжает вверх при прокрутке вниз, появляется при прокрутке вверх
   initHeaderScroll();
-  
+
   // Поиск
   if (searchInput) {
     searchInput.addEventListener('input', function() {
@@ -538,7 +562,7 @@ function init() {
       renderStores(this.value);
     });
   }
-  
+
   // Переключатель языков
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.addEventListener('click', function() {
