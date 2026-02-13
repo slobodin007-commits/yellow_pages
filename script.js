@@ -456,6 +456,43 @@ function setLang(lang) {
   });
 }
 
+// Шапка на мобильном: скрывается при прокрутке вниз, появляется при прокрутке вверх (всплывающая панель)
+function initHeaderScroll() {
+  var header = document.querySelector('.header');
+  if (!header) return;
+  var lastScrollY = window.scrollY || window.pageYOffset;
+  var ticking = false;
+  var mobile = window.matchMedia('(max-width: 599px)');
+
+  function updateHeader() {
+    if (!mobile.matches) {
+      header.classList.remove('header--hidden');
+      return;
+    }
+    var scrollY = window.scrollY || window.pageYOffset;
+    if (scrollY <= 60) {
+      header.classList.remove('header--hidden');
+    } else if (scrollY > lastScrollY + 40) {
+      header.classList.add('header--hidden');
+    } else if (scrollY < lastScrollY - 40) {
+      header.classList.remove('header--hidden');
+    }
+    lastScrollY = scrollY;
+    ticking = false;
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      requestAnimationFrame(updateHeader);
+      ticking = true;
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  mobile.addEventListener('change', updateHeader);
+  updateHeader();
+}
+
 // Инициализация
 function init() {
   searchInput = document.getElementById('search-input');
@@ -465,6 +502,9 @@ function init() {
   
   // Установить сохранённый язык
   setLang(currentLang);
+  
+  // На мобильном: шапка уезжает вверх при прокрутке вниз, появляется при прокрутке вверх
+  initHeaderScroll();
   
   // Поиск
   if (searchInput) {

@@ -75,13 +75,18 @@ a:hover {
   animation: slideDown 0.5s ease;
 }
 
-/* На мобильных — шапка всегда прижата к верху при прокрутке (fixed) */
+/* На мобильных: шапка уезжает вверх при прокрутке вниз, появляется при прокрутке вверх (как всплывающая панель) */
 @media (max-width: 599px) {
   .header {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .header.header--hidden {
+    transform: translateY(-100%);
+    box-shadow: none;
   }
   body {
     padding-top: 80px;
