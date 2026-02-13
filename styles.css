@@ -112,15 +112,27 @@ a:hover {
 }
 
 .logo {
-  font-weight: 700;
-  font-size: 1.125rem;
-  color: #1a1a1a;
+  display: inline-flex;
+  align-items: center;
   text-decoration: none;
 }
 
 .logo:hover {
   text-decoration: none;
-  color: #1a73e8;
+  opacity: 0.9;
+}
+
+.logo-img {
+  display: block;
+  height: 40px;
+  width: auto;
+  max-width: 180px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+[dir="rtl"] .logo-img {
+  object-position: right center;
 }
 
 .nav {
@@ -609,8 +621,9 @@ main {
     padding: 1rem 1.5rem;
   }
 
-  .logo {
-    font-size: 1.25rem;
+  .logo-img {
+    height: 48px;
+    max-width: 220px;
   }
 
   .nav-link {

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="220" viewBox="0 0 820 220" role="img" aria-label="YellowPages Info logo">
+  <defs>
+    <linearGradient id="yg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFF27A"/>
+      <stop offset="0.55" stop-color="#FFD400"/>
+      <stop offset="1" stop-color="#FFB300"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#000" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <!-- Icon -->
+  <g transform="translate(24,24)" filter="url(#softShadow)">
+    <rect x="0" y="0" width="172" height="172" rx="32" fill="url(#yg)"/>
+    <!-- Pin -->
+    <path d="M86 30c-21.5 0-39 17.5-39 39 0 28.2 39 73 39 73s39-44.8 39-73c0-21.5-17.5-39-39-39z"
+          fill="none" stroke="#111" stroke-width="10" stroke-linejoin="round"/>
+    <!-- Bag -->
+    <g transform="translate(66,58)">
+      <rect x="0" y="10" width="40" height="46" rx="8" fill="#fff" stroke="#111" stroke-width="6"/>
+      <path d="M10 14c0-8 6-14 10-14s10 6 10 14" fill="none" stroke="#111" stroke-width="6" stroke-linecap="round"/>
+      <circle cx="12" cy="34" r="3" fill="#111"/>
+      <circle cx="28" cy="34" r="3" fill="#111"/>
+    </g>
+    <!-- "pages" lines -->
+    <path d="M40 132h92" stroke="#111" stroke-width="10" stroke-linecap="round"/>
+    <path d="M52 148h68" stroke="#111" stroke-width="10" stroke-linecap="round"/>
+  </g>
+
+  <!-- Wordmark -->
+  <g transform="translate(226,88)">
+    <text x="0" y="0" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
+          font-size="64" font-weight="800" fill="#111">Yellow</text>
+    <text x="205" y="0" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
+          font-size="64" font-weight="800" fill="#FFD400">Pages</text>
+    <text x="420" y="0" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
+          font-size="56" font-weight="700" fill="#6B7280">Info</text>
+  </g>
+</svg>
