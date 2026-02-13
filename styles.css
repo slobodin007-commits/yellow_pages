@@ -160,13 +160,13 @@ a:hover {
   left: 0;
 }
 
-/* Language Switcher */
+/* Language Switcher (логические свойства для RTL) */
 .lang-switcher {
   display: flex;
   gap: 0.25rem;
-  margin-left: 0.5rem;
-  border-left: 1px solid #e0e0e0;
-  padding-left: 0.5rem;
+  margin-inline-start: 0.5rem;
+  border-inline-start: 1px solid #e0e0e0;
+  padding-inline-start: 0.5rem;
 }
 
 .lang-btn {
@@ -208,7 +208,11 @@ main {
   position: relative;
   padding: 3rem 1rem;
   margin: 0 -1rem 2rem;
-  background: url('assets/hero-bg.svg') center/cover no-repeat;
+  background-color: #667eea;
+  background-image: url('assets/hero-bg.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   border-radius: 0 0 30px 30px;
   overflow: hidden;
   animation: fadeIn 0.8s ease;
