@@ -124,21 +124,12 @@ const STORES_DATA = [
     name: { ru: 'dr_mobale', en: 'dr_mobale', he: 'dr_mobale', ar: 'dr_mobale' },
     category: { ru: 'магазин', en: 'store', he: 'חנות', ar: 'متجر' },
     description: {
-<<<<<<< HEAD
       ru: 'Khanita St 22, Haifa.',
       en: 'Khanita St 22, Haifa.',
       he: 'Khanita St 22, Haifa.',
       ar: 'Khanita St 22, Haifa.'
     },
     hours: HOURS_09_21,
-=======
-      ru: 'Женская и мужская одежда, аксессуары. Сезонные распродажи.',
-      en: "Women's and men's clothing, accessories. Seasonal sales.",
-      he: 'ביגוד נשים וגברים, אקססוריז. מבצעי עונה.',
-      ar: 'ملابس نسائية ورجالية، إكسسوارات. تخفيضات موسمية.'
-    },
-    hours: { ru: 'Пн–Вс 10:00–21:00', en: 'Mon–Sun 10:00–21:00', he: "א'-ש' 10:00–21:00", ar: 'الإثنين–الأحد 10:00–21:00' },
->>>>>>> 71d1c070e16250417b7e8e1a52fb244f40015973
     coupon: 'YELLOW15',
     couponDesc: { ru: 'Скидка 15%', en: '15% off', he: '15% הנחה', ar: 'خصم 15%' },
     phone: '+972501234501',
@@ -155,11 +146,7 @@ const STORES_DATA = [
       he: 'Khanita St 27, Haifa.',
       ar: 'Khanita St 27, Haifa.'
     },
-<<<<<<< HEAD
     hours: HOURS_09_21,
-=======
-    hours: { ru: 'Пн–Сб 9:00–20:00', en: 'Mon–Sat 9:00–20:00', he: "א'-ו' 9:00–20:00", ar: 'الإثنين–السبت 9:00–20:00' },
->>>>>>> 71d1c070e16250417b7e8e1a52fb244f40015973
     coupon: 'FAMILY20',
     couponDesc: { ru: '20% скидка', en: '20% off', he: '20% הנחה', ar: 'خصم 20%' },
     phone: '+972501234502',
@@ -168,13 +155,8 @@ const STORES_DATA = [
   },
   {
     id: 3,
-<<<<<<< HEAD
     name: { ru: 'Florista', en: 'Florista', he: 'Florista', ar: 'Florista' },
     category: { ru: 'магазин', en: 'store', he: 'חנות', ar: 'متجر' },
-=======
-    name: { ru: 'Красота и Косметика', en: 'Beauty & Cosmetics', he: 'יופי וקוסמטיקה', ar: 'الجمال ومستحضرات التجميل' },
-    category: { ru: 'косметика', en: 'cosmetics', he: 'קוסמטика', ar: 'مستحضرات تجميل' },
->>>>>>> 71d1c070e16250417b7e8e1a52fb244f40015973
     description: {
       ru: 'Khanita St 34, Haifa.',
       en: 'Khanita St 34, Haifa.',
@@ -193,21 +175,12 @@ const STORES_DATA = [
     name: { ru: 'פיצוחי פרץ', en: 'פיצוחי פרץ', he: 'פיצוחי פרץ', ar: 'פיצוחי פרץ' },
     category: { ru: 'магазин', en: 'store', he: 'חנות', ar: 'متجر' },
     description: {
-<<<<<<< HEAD
       ru: 'Khanita St 40, Haifa.',
       en: 'Khanita St 40, Haifa.',
       he: 'Khanita St 40, Haifa.',
       ar: 'Khanita St 40, Haifa.'
     },
     hours: HOURS_09_21,
-=======
-      ru: 'Смартфоны, ноутбуки, гаджеты. Рассрочка 0%.',
-      en: 'Smartphones, laptops, gadgets. 0% financing.',
-      he: "סמארטפונים, מחשבים, גאדג'טים. תשלום 0% ריבית.",
-      ar: 'هواتف ذكية، أجهزة كمبيوتر محمولة، أدوات. تمويل 0%.'
-    },
-    hours: { ru: 'Пн–Вс 10:00–21:00', en: 'Mon–Sun 10:00–21:00', he: "א'-ש' 10:00–21:00", ar: 'الإثنين–الأحد 10:00–21:00' },
->>>>>>> 71d1c070e16250417b7e8e1a52fb244f40015973
     coupon: 'TECH500',
     couponDesc: { ru: 'Скидка по купону', en: 'Coupon discount', he: 'הנחה בקופון', ar: 'خصم بالكوبون' },
     phone: '+972501234504',
