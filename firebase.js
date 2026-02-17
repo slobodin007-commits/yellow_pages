@@ -51,6 +51,16 @@ export async function createCouponAndRedirect(storeId) {
   window.location.href = 'coupon.html?id=' + encodeURIComponent(couponId);
 }
 
+/**
+ * Создать магазины в Firestore автоматически (один раз после деплоя).
+ * PIN по умолчанию: 1234.
+ */
+export async function seedStores() {
+  const fn = httpsCallable(functions, 'seedStores');
+  const result = await fn({});
+  return result.data;
+}
+
 export { db, doc, getDoc };
 
 // Глобальный объект для доступа с главной страницы (script.js без type="module")
@@ -58,6 +68,7 @@ window.ypFirebase = {
   createCoupon,
   redeemCoupon,
   createCouponAndRedirect,
+  seedStores,
   db,
   app
 };

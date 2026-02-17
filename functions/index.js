@@ -112,3 +112,32 @@ export const redeemCoupon = onCall({ region: 'europe-west1' }, async (request) =
 
   return { success: true };
 });
+
+/**
+ * seedStores — один раз создаёт 4 магазина в Firestore, если их ещё нет.
+ * PIN по умолчанию: 1234 (поменять можно в Firebase Console).
+ */
+const STORES_TO_SEED = [
+  { id: 'dr_mobale', name: 'dr_mobale', couponText: 'Скидка 15%' },
+  { id: 'hanita_dogs', name: 'חניתה דוגס', couponText: '20% скидка' },
+  { id: 'florista', name: 'Florista', couponText: '10% скидка' },
+  { id: 'pizuhe_perez', name: 'פיצוחי פרץ', couponText: 'Скидка по купону' }
+];
+
+const DEFAULT_PIN = '1234';
+
+export const seedStores = onCall({ region: 'europe-west1' }, async () => {
+  const storesRef = db.collection('stores');
+  for (const s of STORES_TO_SEED) {
+    const ref = storesRef.doc(s.id);
+    const snap = await ref.get();
+    if (!snap.exists) {
+      await ref.set({
+        name: s.name,
+        pin: DEFAULT_PIN,
+        couponText: s.couponText
+      });
+    }
+  }
+  return { success: true, message: 'Магазины созданы. PIN по умолчанию: 1234 (смените в Firebase Console).' };
+});

@@ -613,6 +613,32 @@ function init() {
 
   // Рендер
   renderStores('');
+
+  // Блок «Создать магазины»: показывать только при ?seed=1 в URL
+  if (window.location.search.indexOf('seed=1') !== -1) {
+    var seedBlock = document.getElementById('seed-block');
+    var seedBtn = document.getElementById('seed-stores-btn');
+    if (seedBlock) seedBlock.hidden = false;
+    if (seedBtn) {
+      seedBtn.addEventListener('click', function() {
+        if (!window.ypFirebase) {
+          showToast('Подождите загрузки… и нажмите снова.');
+          return;
+        }
+        seedBtn.disabled = true;
+        window.ypFirebase.seedStores()
+          .then(function(r) {
+            showToast(r.message || 'Готово');
+          })
+          .catch(function(err) {
+            showToast('Ошибка: ' + (err && err.message ? err.message : 'попробуйте позже'));
+          })
+          .then(function() {
+            seedBtn.disabled = false;
+          });
+      });
+    }
+  }
 }
 
 // Запуск

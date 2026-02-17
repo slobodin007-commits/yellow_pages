@@ -12,6 +12,13 @@
   <meta property="og:url" content="https://yellowpages-info.com">
   <link rel="icon" href="favicon.ico">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    .seed-block { max-width: 480px; margin: 1.5rem auto; padding: 1rem; background: #fff8e6; border: 1px solid #f0e68c; border-radius: 12px; }
+    .seed-inner p { margin: 0 0 1rem; font-size: 0.9375rem; color: #666; }
+    .btn-seed { padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: 600; color: #333; background: #ffc107; border: none; border-radius: 10px; cursor: pointer; }
+    .btn-seed:hover:not(:disabled) { background: #e0a800; }
+    .btn-seed:disabled { opacity: 0.7; cursor: not-allowed; }
+  </style>
   
   <!-- Google AdSense Auto Ads — реклама размещается автоматически -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8042664823664503"
@@ -69,6 +76,14 @@
       <div class="ad-card">
         <span class="ad-label" id="ad-label">Реклама</span>
         <p class="ad-auto-note">Реклама от Google отображается на странице автоматически.</p>
+      </div>
+    </section>
+
+    <!-- Создать магазины в Firestore (видно только при ?seed=1 в URL) -->
+    <section id="seed-block" class="seed-block" aria-label="Настройка базы" hidden>
+      <div class="seed-inner">
+        <p>Один раз создайте 4 магазина в Firestore для работы купонов. PIN по умолчанию: 1234 (смените в Firebase Console).</p>
+        <button type="button" id="seed-stores-btn" class="btn-seed">Создать магазины в базе</button>
       </div>
     </section>
 
