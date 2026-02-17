@@ -31,14 +31,13 @@ export async function createCoupon(storeId) {
 }
 
 /**
- * Погасить купон по PIN (Cloud Function).
+ * Погасить купон (Cloud Function). Без PIN — один клик «Подтвердить».
  * @param {string} couponId
- * @param {string} pin - 4 цифры
  * @returns {Promise<{ success: boolean, message?: string }>}
  */
-export async function redeemCoupon(couponId, pin) {
+export async function redeemCoupon(couponId) {
   const fn = httpsCallable(functions, 'redeemCoupon');
-  const result = await fn({ couponId, pin });
+  const result = await fn({ couponId });
   return result.data;
 }
 

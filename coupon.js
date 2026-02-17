@@ -1,5 +1,5 @@
 /**
- * Страница купона: загрузка из Firestore, таймер 20 мин, погашение по PIN
+ * Страница купона: загрузка из Firestore, таймер 20 мин, погашение по кнопке (без PIN)
  */
 import { db, doc, getDoc, redeemCoupon } from './firebase.js';
 
@@ -19,12 +19,7 @@ const el = {
   couponCode: document.getElementById('coupon-code'),
   couponTimer: document.getElementById('coupon-timer'),
   couponStatus: document.getElementById('coupon-status'),
-  btnRedeem: document.getElementById('btn-redeem'),
-  pinModal: document.getElementById('pin-modal'),
-  pinInput: document.getElementById('pin-input'),
-  pinError: document.getElementById('pin-error'),
-  pinCancel: document.getElementById('pin-cancel'),
-  pinConfirm: document.getElementById('pin-confirm')
+  btnRedeem: document.getElementById('btn-redeem')
 };
 
 function showLoading(show) {
@@ -135,11 +130,7 @@ async function loadCoupon() {
       startTimer(expiresAt);
     }
 
-    // Обработчики кнопки и модалки PIN
-    el.btnRedeem.addEventListener('click', openPinModal);
-    el.pinCancel.addEventListener('click', closePinModal);
-    el.pinConfirm.addEventListener('click', submitPin);
-    el.pinInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') submitPin(); });
+    el.btnRedeem.addEventListener('click', doRedeem);
   } catch (err) {
     console.error(err);
     var msg = 'Ошибка загрузки. Попробуйте позже.';
@@ -154,41 +145,27 @@ async function loadCoupon() {
   }
 }
 
-function openPinModal() {
-  el.pinError.textContent = '';
-  el.pinInput.value = '';
-  el.pinModal.classList.remove('hidden');
-  el.pinInput.focus();
-}
-
-function closePinModal() {
-  el.pinModal.classList.add('hidden');
-}
-
-async function submitPin() {
-  const pin = el.pinInput.value.trim();
-  if (pin.length !== 4) {
-    el.pinError.textContent = 'Введите 4 цифры PIN';
-    return;
-  }
-
-  el.pinConfirm.disabled = true;
-  el.pinError.textContent = '';
+async function doRedeem() {
+  el.btnRedeem.disabled = true;
+  el.btnRedeem.textContent = '…';
 
   try {
-    const result = await redeemCoupon(COUPON_ID, pin);
+    const result = await redeemCoupon(COUPON_ID);
     if (result.success) {
-      closePinModal();
       updateStatus('used');
       el.couponTimer.textContent = 'Использован';
       if (timerInterval) clearInterval(timerInterval);
     } else {
-      el.pinError.textContent = result.message || 'Неверный PIN или купон уже использован';
+      el.couponStatus.textContent = result.message || 'Не удалось погасить';
+      el.couponStatus.classList.add('expired');
+      el.btnRedeem.disabled = false;
+      el.btnRedeem.textContent = 'Подтвердить';
     }
   } catch (err) {
-    el.pinError.textContent = 'Ошибка. Попробуйте снова.';
-  } finally {
-    el.pinConfirm.disabled = false;
+    el.couponStatus.textContent = 'Ошибка. Попробуйте снова.';
+    el.couponStatus.classList.add('expired');
+    el.btnRedeem.disabled = false;
+    el.btnRedeem.textContent = 'Подтвердить';
   }
 }
 

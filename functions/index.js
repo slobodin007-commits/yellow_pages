@@ -63,16 +63,13 @@ export const createCoupon = onCall({ region: 'europe-west1' }, async (request) =
 });
 
 /**
- * redeemCoupon — проверяет PIN, статус и срок, помечает купон использованным.
- * Вызывается с клиента: { couponId: string, pin: string }
+ * redeemCoupon — помечает купон использованным (без PIN).
+ * Вызывается с клиента: { couponId: string }
  */
 export const redeemCoupon = onCall({ region: 'europe-west1' }, async (request) => {
-  const { couponId, pin } = request.data || {};
+  const { couponId } = request.data || {};
   if (!couponId || typeof couponId !== 'string') {
     throw new HttpsError('invalid-argument', 'couponId is required');
-  }
-  if (!pin || typeof pin !== 'string' || pin.length !== 4) {
-    return { success: false, message: 'Введите 4 цифры PIN' };
   }
 
   const couponRef = db.collection('coupons').doc(couponId);
@@ -82,7 +79,7 @@ export const redeemCoupon = onCall({ region: 'europe-west1' }, async (request) =
   }
 
   const coupon = couponSnap.data();
-  const { storeId, status } = coupon;
+  const { status } = coupon;
   const expiresAt = coupon.expiresAt?.toMillis ? coupon.expiresAt.toMillis() : 0;
   const now = Date.now();
 
@@ -92,17 +89,6 @@ export const redeemCoupon = onCall({ region: 'europe-west1' }, async (request) =
   if (status === 'expired' || expiresAt < now) {
     await couponRef.update({ status: 'expired' });
     return { success: false, message: 'Купон просрочен' };
-  }
-
-  const storeRef = db.collection('stores').doc(storeId);
-  const storeSnap = await storeRef.get();
-  if (!storeSnap.exists) {
-    return { success: false, message: 'Магазин не найден' };
-  }
-
-  const storePin = storeSnap.data().pin;
-  if (storePin !== pin) {
-    return { success: false, message: 'Неверный PIN' };
   }
 
   await couponRef.update({
