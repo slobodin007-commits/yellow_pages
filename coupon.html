@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function(){var l=localStorage.getItem('yp-lang')||'ru';var rtl=l==='he'||l==='ar';document.documentElement.lang=l;document.documentElement.dir=rtl?'rtl':'ltr';})();
+  </script>
   <title>Купон — YellowPages Info</title>
   <link rel="icon" href="favicon.ico">
   <link rel="stylesheet" href="styles.css">
@@ -32,23 +35,23 @@
 </head>
 <body>
   <div class="coupon-page">
-    <a href="index.html" class="back-link">← Назад к каталогу</a>
+    <a href="index.html" class="back-link" id="back-link"></a>
 
-    <div id="coupon-loading" class="coupon-loading">Загрузка купона…</div>
+    <div id="coupon-loading" class="coupon-loading"></div>
     <div id="coupon-error" class="coupon-error hidden"></div>
 
     <div id="coupon-content" class="coupon-card hidden">
-      <h1>Ваш купон</h1>
+      <h1 id="coupon-title"></h1>
       <div class="coupon-store" id="coupon-store-name"></div>
       <div class="coupon-text" id="coupon-text"></div>
       <div class="coupon-code" id="coupon-code"></div>
       <div class="coupon-timer" id="coupon-timer"></div>
       <div class="coupon-status" id="coupon-status"></div>
-      <button type="button" class="btn-redeem" id="btn-redeem">Подтвердить</button>
+      <button type="button" class="btn-redeem" id="btn-redeem"></button>
     </div>
 
     <div class="ad-section">
-      <p>Реклама</p>
+      <p id="ad-label"></p>
       <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8042664823664503" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
