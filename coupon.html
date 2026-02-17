@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Купон — YellowPages Info</title>
+  <link rel="icon" href="favicon.ico">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .hidden { display: none !important; }
+    .coupon-page { max-width: 480px; margin: 0 auto; padding: 1.5rem 1rem; }
+    .coupon-card { background: #fff; border-radius: 16px; padding: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin-bottom: 1.5rem; }
+    .coupon-page h1 { font-size: 1.25rem; margin: 0 0 1rem; color: #2d3748; }
+    .coupon-store { font-size: 1.125rem; font-weight: 700; color: #667eea; margin-bottom: 0.5rem; }
+    .coupon-text { font-size: 1rem; color: #555; margin-bottom: 1rem; }
+    .coupon-code { font-size: 1.5rem; font-weight: 700; font-family: ui-monospace, monospace; letter-spacing: 0.1em; padding: 1rem; background: #f8f9fa; border-radius: 12px; text-align: center; margin-bottom: 1rem; }
+    .coupon-timer { font-size: 0.9375rem; color: #666; margin-bottom: 1rem; }
+    .coupon-timer.expired { color: #e53e3e; }
+    .coupon-status { font-size: 0.9375rem; font-weight: 600; padding: 0.5rem 0; }
+    .coupon-status.used { color: #38a169; }
+    .coupon-status.expired { color: #e53e3e; }
+    .btn-redeem { width: 100%; padding: 1rem; font-size: 1rem; font-weight: 600; color: #fff; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; border-radius: 12px; cursor: pointer; margin-top: 0.5rem; }
+    .btn-redeem:hover:not(:disabled) { opacity: 0.95; }
+    .btn-redeem:disabled { opacity: 0.6; cursor: not-allowed; }
+    .back-link { display: inline-block; margin-bottom: 1rem; color: #667eea; text-decoration: none; font-size: 0.9375rem; }
+    .back-link:hover { text-decoration: underline; }
+    /* Модальное окно PIN */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+    .modal-overlay.hidden { display: none; }
+    .modal { background: #fff; border-radius: 16px; padding: 1.5rem; max-width: 320px; width: 100%; }
+    .modal h3 { margin: 0 0 1rem; font-size: 1.125rem; }
+    .modal input { width: 100%; padding: 0.75rem; font-size: 1.25rem; letter-spacing: 0.5em; text-align: center; border: 2px solid #e0e0e0; border-radius: 8px; margin-bottom: 1rem; }
+    .modal input:focus { outline: none; border-color: #667eea; }
+    .modal-actions { display: flex; gap: 0.5rem; }
+    .modal-actions button { flex: 1; padding: 0.75rem; font-weight: 600; border-radius: 8px; cursor: pointer; border: none; }
+    .modal-confirm { background: #667eea; color: #fff; }
+    .modal-confirm:disabled { opacity: 0.6; cursor: not-allowed; }
+    .modal-cancel { background: #e2e8f0; color: #4a5568; }
+    .modal-error { font-size: 0.875rem; color: #e53e3e; margin-top: 0.5rem; }
+    .coupon-loading, .coupon-error { text-align: center; padding: 2rem; color: #666; }
+    .ad-section { margin: 2rem 0; padding: 1rem; background: #f8f9fa; border-radius: 12px; text-align: center; }
+    .ad-section p { margin: 0 0 0.5rem; font-size: 0.75rem; color: #888; }
+  </style>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8042664823664503" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="coupon-page">
+    <a href="index.html" class="back-link">← Назад к каталогу</a>
+
+    <div id="coupon-loading" class="coupon-loading">Загрузка купона…</div>
+    <div id="coupon-error" class="coupon-error hidden"></div>
+
+    <div id="coupon-content" class="coupon-card hidden">
+      <h1>Ваш купон</h1>
+      <div class="coupon-store" id="coupon-store-name"></div>
+      <div class="coupon-text" id="coupon-text"></div>
+      <div class="coupon-code" id="coupon-code"></div>
+      <div class="coupon-timer" id="coupon-timer"></div>
+      <div class="coupon-status" id="coupon-status"></div>
+      <button type="button" class="btn-redeem" id="btn-redeem">Подтвердить у продавца</button>
+    </div>
+
+    <div class="ad-section">
+      <p>Реклама</p>
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8042664823664503" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+  </div>
+
+  <!-- Модальное окно ввода PIN -->
+  <div id="pin-modal" class="modal-overlay hidden">
+    <div class="modal">
+      <h3>Введите PIN от продавца (4 цифры)</h3>
+      <input type="password" inputmode="numeric" pattern="[0-9]*" maxlength="4" id="pin-input" placeholder="••••" autocomplete="off">
+      <div class="modal-error" id="pin-error"></div>
+      <div class="modal-actions">
+        <button type="button" class="modal-cancel" id="pin-cancel">Отмена</button>
+        <button type="button" class="modal-confirm" id="pin-confirm">Подтвердить</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="coupon.js"></script>
+</body>
+</html>

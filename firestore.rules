@@ -1,0 +1,15 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Магазины: чтение всем (для отображения названия и текста скидки на странице купона)
+    match /stores/{storeId} {
+      allow read: if true;
+      allow write: if false;
+    }
+    // Купоны: чтение по id (любой с ссылкой может видеть статус); запись только через Cloud Functions
+    match /coupons/{couponId} {
+      allow read: if true;
+      allow write: if false;
+    }
+  }
+}

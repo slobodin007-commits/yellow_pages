@@ -23,6 +23,7 @@ const UI = {
     call: 'Позвонить',
     directions: 'Как добраться',
     copied: 'Код скопирован!',
+    couponError: 'Ошибка. Попробуйте позже.',
     noResults: 'По вашему запросу ничего не найдено.',
     adLabel: 'Реклама',
     contactsTitle: 'Контакты',
@@ -44,6 +45,7 @@ const UI = {
     call: 'Call',
     directions: 'Get directions',
     copied: 'Code copied!',
+    couponError: 'Error. Try again later.',
     noResults: 'No results found.',
     adLabel: 'Advertisement',
     contactsTitle: 'Contact',
@@ -65,6 +67,7 @@ const UI = {
     call: 'התקשר',
     directions: 'איך להגיע',
     copied: 'הקוד הועתק!',
+    couponError: 'שגיאה. נסה שוב.',
     noResults: 'לא נמצאו תוצאות.',
     adLabel: 'פרסום',
     contactsTitle: 'צור קשר',
@@ -86,6 +89,7 @@ const UI = {
     call: 'اتصل',
     directions: 'الحصول على الاتجاهات',
     copied: 'تم نسخ الرمز!',
+    couponError: 'خطأ. حاول لاحقاً.',
     noResults: 'لم يتم العثور على نتائج.',
     adLabel: 'إعلان',
     contactsTitle: 'اتصل بنا',
@@ -121,6 +125,7 @@ const HOURS_09_21 = {
 const STORES_DATA = [
   {
     id: 1,
+    firestoreId: 'dr_mobale',
     name: { ru: 'dr_mobale', en: 'dr_mobale', he: 'dr_mobale', ar: 'dr_mobale' },
     category: { ru: 'магазин', en: 'store', he: 'חנות', ar: 'متجر' },
     description: {
@@ -138,6 +143,7 @@ const STORES_DATA = [
   },
   {
     id: 2,
+    firestoreId: 'hanita_dogs',
     name: { ru: 'חניתה דוגס', en: 'חניתה דוגס', he: 'חניתה דוגס', ar: 'חניתה דוגס' },
     category: { ru: 'магазин', en: 'store', he: 'חנות', ar: 'متجر' },
     description: {
@@ -155,6 +161,7 @@ const STORES_DATA = [
   },
   {
     id: 3,
+    firestoreId: 'florista',
     name: { ru: 'Florista', en: 'Florista', he: 'Florista', ar: 'Florista' },
     category: { ru: 'магазин', en: 'store', he: 'חנות', ar: 'متجر' },
     description: {
@@ -172,6 +179,7 @@ const STORES_DATA = [
   },
   {
     id: 4,
+    firestoreId: 'pizuhe_perez',
     name: { ru: 'פיצוחי פרץ', en: 'פיצוחי פרץ', he: 'פיצוחי פרץ', ar: 'פיצוחי פרץ' },
     category: { ru: 'магазин', en: 'store', he: 'חנות', ar: 'متجر' },
     description: {
@@ -368,7 +376,18 @@ function createStoreCard(store) {
   const toggleBtn = card.querySelector('.store-coupon-toggle');
   const revealEl = card.querySelector('.store-coupon-reveal');
 
-  toggleBtn.addEventListener('click', function() {
+  toggleBtn.addEventListener('click', async function() {
+    if (store.firestoreId && window.ypFirebase) {
+      toggleBtn.disabled = true;
+      try {
+        await window.ypFirebase.createCouponAndRedirect(store.firestoreId);
+      } catch (err) {
+        console.error(err);
+        toggleBtn.disabled = false;
+        showToast(t('couponError') || 'Ошибка. Попробуйте позже.');
+      }
+      return;
+    }
     const isOpen = !revealEl.hidden;
     revealEl.hidden = isOpen;
     toggleBtn.setAttribute('aria-expanded', String(!isOpen));
