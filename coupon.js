@@ -142,7 +142,13 @@ async function loadCoupon() {
     el.pinInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') submitPin(); });
   } catch (err) {
     console.error(err);
-    showError('Ошибка загрузки. Попробуйте позже.');
+    var msg = 'Ошибка загрузки. Попробуйте позже.';
+    if (err && err.code === 'permission-denied') {
+      msg = 'Нет доступа к базе. Задеплойте правила Firestore: firebase deploy --only firestore:rules';
+    } else if (err && err.message) {
+      msg = 'Ошибка: ' + err.message;
+    }
+    showError(msg);
   } finally {
     showLoading(false);
   }
