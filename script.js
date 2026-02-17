@@ -384,12 +384,20 @@ function createStoreCard(store) {
       } catch (err) {
         console.error(err);
         var msg = t('couponError') || 'Ошибка. Попробуйте позже.';
-        if (err && err.message) {
-          if (err.message.includes('not-found') || err.message.includes('Store not found')) {
-            msg = 'Магазин ещё не добавлен в базу. Попробуйте позже.';
-          } else if (err.message.includes('unavailable') || err.message.includes('network')) {
-            msg = 'Нет связи. Проверьте интернет.';
+        var isStoreNotFound = err && err.message && (err.message.includes('not-found') || err.message.includes('Store not found'));
+        if (isStoreNotFound) {
+          try {
+            showToast('Создаём базу магазинов…');
+            await window.ypFirebase.seedStores();
+            showToast('Готово. Открываю купон…');
+            await window.ypFirebase.createCouponAndRedirect(store.firestoreId);
+            return;
+          } catch (retryErr) {
+            console.error(retryErr);
+            msg = 'Магазин ещё не добавлен в базу. Откройте страницу с ?seed=1 и нажмите «Создать магазины в базе».';
           }
+        } else if (err && err.message && (err.message.includes('unavailable') || err.message.includes('network'))) {
+          msg = 'Нет связи. Проверьте интернет.';
         }
         showToast(msg);
       } finally {
