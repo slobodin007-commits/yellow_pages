@@ -16,6 +16,7 @@ const COUPON_UI = {
     yourCoupon: 'Ваш купон',
     confirm: 'Подтвердить',
     adLabel: 'Реклама',
+    adAutoNote: 'Реклама от Google отображается на странице автоматически.',
     couponUsed: 'Купон уже использован',
     couponExpired: 'Купон просрочен',
     timeLeftFormat: 'Осталось: %1:%2',
@@ -40,6 +41,7 @@ const COUPON_UI = {
     yourCoupon: 'Your coupon',
     confirm: 'Confirm',
     adLabel: 'Advertisement',
+    adAutoNote: 'Ads by Google are displayed automatically on the page.',
     couponUsed: 'Coupon already used',
     couponExpired: 'Coupon expired',
     timeLeftFormat: 'Time left: %1:%2',
@@ -64,6 +66,7 @@ const COUPON_UI = {
     yourCoupon: 'הקופון שלך',
     confirm: 'אישור',
     adLabel: 'פרסום',
+    adAutoNote: 'פרסום של Google מוצג אוטומטית בדף.',
     couponUsed: 'הקופון כבר נוצל',
     couponExpired: 'הקופון פג תוקף',
     timeLeftFormat: 'נותר: %1:%2',
@@ -88,6 +91,7 @@ const COUPON_UI = {
     yourCoupon: 'قسيمتك',
     confirm: 'تأكيد',
     adLabel: 'إعلان',
+    adAutoNote: 'إعلانات Google تُعرض تلقائياً على الصفحة.',
     couponUsed: 'تم استخدام القسيمة مسبقاً',
     couponExpired: 'انتهت صلاحية القسيمة',
     timeLeftFormat: 'المتبقي: %1:%2',
@@ -143,7 +147,8 @@ const el = {
   couponTimer: document.getElementById('coupon-timer'),
   couponStatus: document.getElementById('coupon-status'),
   btnRedeem: document.getElementById('btn-redeem'),
-  adLabel: document.getElementById('ad-label')
+  adLabel: document.getElementById('ad-label'),
+  adAutoNote: document.getElementById('ad-auto-note')
 };
 
 function applyCouponUI() {
@@ -153,6 +158,7 @@ function applyCouponUI() {
   if (el.couponTitle) el.couponTitle.textContent = t('yourCoupon');
   if (el.btnRedeem) el.btnRedeem.textContent = t('confirm');
   if (el.adLabel) el.adLabel.textContent = t('adLabel');
+  if (el.adAutoNote) el.adAutoNote.textContent = t('adAutoNote');
 }
 
 applyCouponLang();
