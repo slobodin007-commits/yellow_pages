@@ -377,6 +377,10 @@ function createStoreCard(store) {
   const revealEl = card.querySelector('.store-coupon-reveal');
 
   toggleBtn.addEventListener('click', async function() {
+    if (store.firestoreId === 'pizuhe_perez') {
+      window.location.href = 'wheel.html';
+      return;
+    }
     if (store.firestoreId && window.ypFirebase) {
       toggleBtn.disabled = true;
       try {
