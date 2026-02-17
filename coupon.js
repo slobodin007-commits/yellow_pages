@@ -25,6 +25,9 @@ const COUPON_UI = {
     couponNotFound: 'Купон не найден.',
     storeNotFound: 'Магазин не найден.',
     discountByCoupon: 'Скидка по купону',
+    discount15: 'Скидка 15%',
+    discount20: '20% скидка',
+    discount10: '10% скидка',
     redeemFailed: 'Не удалось погасить',
     errorTryAgain: 'Ошибка. Попробуйте снова.',
     errorLoad: 'Ошибка загрузки. Попробуйте позже.',
@@ -46,6 +49,9 @@ const COUPON_UI = {
     couponNotFound: 'Coupon not found.',
     storeNotFound: 'Store not found.',
     discountByCoupon: 'Discount with coupon',
+    discount15: '15% off',
+    discount20: '20% off',
+    discount10: '10% off',
     redeemFailed: 'Could not redeem',
     errorTryAgain: 'Error. Please try again.',
     errorLoad: 'Loading error. Try again later.',
@@ -67,6 +73,9 @@ const COUPON_UI = {
     couponNotFound: 'הקופון לא נמצא.',
     storeNotFound: 'החנות לא נמצאה.',
     discountByCoupon: 'הנחה עם קופון',
+    discount15: '15% הנחה',
+    discount20: '20% הנחה',
+    discount10: '10% הנחה',
     redeemFailed: 'לא ניתן לפדות',
     errorTryAgain: 'שגיאה. נסה שוב.',
     errorLoad: 'שגיאת טעינה. נסה שוב מאוחר יותר.',
@@ -88,6 +97,9 @@ const COUPON_UI = {
     couponNotFound: 'القسيمة غير موجودة.',
     storeNotFound: 'المتجر غير موجود.',
     discountByCoupon: 'خصم بالقسيمة',
+    discount15: 'خصم 15%',
+    discount20: 'خصم 20%',
+    discount10: 'خصم 10%',
     redeemFailed: 'تعذر استبدال القسيمة',
     errorTryAgain: 'خطأ. حاول مرة أخرى.',
     errorLoad: 'خطأ في التحميل. حاول لاحقاً.',
@@ -98,6 +110,14 @@ const COUPON_UI = {
 function t(key) {
   return COUPON_UI[currentLang]?.[key] ?? COUPON_UI.ru[key] ?? key;
 }
+
+/** Ключи перевода текста скидки по storeId (данные в Firestore на русском) */
+const COUPON_TEXT_KEY_BY_STORE = {
+  dr_mobale: 'discount15',
+  hanita_dogs: 'discount20',
+  florista: 'discount10',
+  pizuhe_perez: 'discountByCoupon'
+};
 
 function applyCouponLang() {
   document.documentElement.lang = currentLang;
@@ -227,7 +247,8 @@ async function loadCoupon() {
 
     showContent();
     el.storeName.textContent = storeData.name || storeId;
-    el.couponText.textContent = storeData.couponText || t('discountByCoupon');
+    const couponTextKey = COUPON_TEXT_KEY_BY_STORE[storeId];
+    el.couponText.textContent = couponTextKey ? t(couponTextKey) : (storeData.couponText || t('discountByCoupon'));
     el.couponCode.textContent = COUPON_ID;
 
     const exp = expiresAt?.toMillis ? expiresAt.toMillis() : (expiresAt || 0);
