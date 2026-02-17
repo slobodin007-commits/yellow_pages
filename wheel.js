@@ -9,75 +9,94 @@ const currentLang = localStorage.getItem('yp-lang') || 'ru';
 const WHEEL_UI = {
   ru: {
     pageTitle: 'Колесо удачи — YellowPages Info',
-    backToCatalog: '← Назад к каталогу',
+    backToCatalog: 'Назад к каталогу',
     storeName: 'פיצוחי פרץ',
-    spin: 'Крутить',
-    resultTitle: 'Ваш приз',
+    spin: '✨ Крутить колесо ✨',
+    resultTitle: '🎉 Ваш приз 🎉',
     close: 'Закрыть',
     adLabel: 'Реклама',
     adAutoNote: 'Реклама от Google отображается на странице автоматически.',
-    prize0: '100 г фисташек',
-    prize1: 'Скидка 10 шекелей',
-    prize2: '100 г кураги в подарок',
-    prize3: '100 г микс в подарок',
-    prize4: '100 г киви в подарок',
-    wheelPrize0: '100г фисташек',
-    wheelPrize1: 'Скидка 10₪',
-    wheelPrize2: '100г кураги',
-    wheelPrize3: '100г микс',
-    wheelPrize4: '100г киви'
+    prize0: '🥜 100 г фисташек',
+    prize1: '💰 Скидка 10 шекелей',
+    prize2: '🍑 100 г кураги в подарок',
+    prize3: '🎁 100 г микс в подарок',
+    prize4: '🥝 100 г киви в подарок',
+    wheelPrize0: '100г\nфисташек',
+    wheelPrize1: 'Скидка\n10₪',
+    wheelPrize2: '100г\nкураги',
+    wheelPrize3: '100г\nмикс',
+    wheelPrize4: '100г\nкиви'
   },
   en: {
     pageTitle: 'Lucky wheel — YellowPages Info',
-    backToCatalog: '← Back to catalog',
+    backToCatalog: 'Back to catalog',
     storeName: 'פיצוחי פרץ',
-    spin: 'Spin',
-    resultTitle: 'Your prize',
+    spin: '✨ Spin the wheel ✨',
+    resultTitle: '🎉 Your prize 🎉',
     close: 'Close',
     adLabel: 'Advertisement',
     adAutoNote: 'Ads by Google are displayed automatically on the page.',
-    prize0: '100g pistachios',
-    prize1: '10 NIS discount',
-    prize2: '100g dried apricots free',
-    prize3: '100g mix free',
-    prize4: '100g kiwi free',
-    wheelPrize0: '100g pist.',
-    wheelPrize1: '10₪ off',
-    wheelPrize2: '100g apric.',
-    wheelPrize3: '100g mix',
-    wheelPrize4: '100g kiwi'
+    prize0: '🥜 100g pistachios',
+    prize1: '💰 10 NIS discount',
+    prize2: '🍑 100g dried apricots free',
+    prize3: '🎁 100g mix free',
+    prize4: '🥝 100g kiwi free',
+    wheelPrize0: '100g\npist.',
+    wheelPrize1: '10₪\noff',
+    wheelPrize2: '100g\napric.',
+    wheelPrize3: '100g\nmix',
+    wheelPrize4: '100g\nkiwi'
   },
   he: {
     pageTitle: 'גלגל המזל — YellowPages Info',
-    backToCatalog: '← חזרה לקטלוג',
+    backToCatalog: 'חזרה לקטלוג',
     storeName: 'פיצוחי פרץ',
-    spin: 'סובב',
-    resultTitle: 'הפרס שלך',
+    spin: '✨ סובב את הגלגל ✨',
+    resultTitle: '🎉 הפרס שלך 🎉',
     close: 'סגור',
     adLabel: 'פרסום',
     adAutoNote: 'פרסום של Google מוצג אוטומטית בדף.',
-    prize0: '100 גרם פיסטוקים',
-    prize1: 'הנחה 10 שקל',
-    prize2: '100 גרם משמשים יבשים במתנה',
-    prize3: '100 גרם מיקס במתנה',
-    prize4: '100 גרם קיווי במתנה'
+    prize0: '🥜 100 גרם פיסטוקים',
+    prize1: '💰 הנחה 10 שקל',
+    prize2: '🍑 100 גרם משמשים יבשים במתנה',
+    prize3: '🎁 100 גרם מיקס במתנה',
+    prize4: '🥝 100 גרם קיווי במתנה',
+    wheelPrize0: '100 גרם\nפיסטוקים',
+    wheelPrize1: 'הנחה\n10₪',
+    wheelPrize2: '100 גרם\nמשמשים',
+    wheelPrize3: '100 גרם\nמיקס',
+    wheelPrize4: '100 גרם\nקיווי'
   },
   ar: {
     pageTitle: 'عجلة الحظ — YellowPages Info',
-    backToCatalog: '← العودة إلى الدليل',
+    backToCatalog: 'العودة إلى الدليل',
     storeName: 'פיצוחי פרץ',
-    spin: 'دور',
-    resultTitle: 'جائزتك',
+    spin: '✨ دوّر العجلة ✨',
+    resultTitle: '🎉 جائزتك 🎉',
     close: 'إغلاق',
     adLabel: 'إعلان',
     adAutoNote: 'إعلانات Google تُعرض تلقائياً على الصفحة.',
-    prize0: '100 غرام فستق',
-    prize1: 'خصم 10 شيكل',
-    prize2: '100 غرام مشمش مجاني',
-    prize3: '100 غرام ميكس مجاني',
-    prize4: '100 غرام كيوي مجاني'
+    prize0: '🥜 100 غرام فستق',
+    prize1: '💰 خصم 10 شيكل',
+    prize2: '🍑 100 غرام مشمش مجاني',
+    prize3: '🎁 100 غرام ميكس مجاني',
+    prize4: '🥝 100 غرام كيوي مجاني',
+    wheelPrize0: '100 غرام\nفستق',
+    wheelPrize1: 'خصم\n10₪',
+    wheelPrize2: '100 غرام\nمشمش',
+    wheelPrize3: '100 غرام\nميكس',
+    wheelPrize4: '100 غرام\nكيوي'
   }
 };
+
+// Иконки Font Awesome для призов
+const PRIZE_ICONS = [
+  'fa-solid fa-seedling',      // фисташки
+  'fa-solid fa-tags',           // скидка
+  'fa-solid fa-lemon',          // курага
+  'fa-solid fa-gift',           // микс
+  'fa-solid fa-leaf'            // киви
+];
 
 // Веса: индекс 1 (скидка 10 ₪) реже. [2,1,2,2,2] → скидка ~11%
 const PRIZE_WEIGHTS = [2, 1, 2, 2, 2];
@@ -99,16 +118,19 @@ function applyLang() {
 
 function applyUI() {
   document.title = t('pageTitle');
-  const back = document.getElementById('back-link');
+  const backText = document.getElementById('back-text');
   const store = document.getElementById('wheel-store-name');
   const spinBtn = document.getElementById('btn-spin');
   const resultTitle = document.getElementById('result-title');
   const closeBtn = document.getElementById('btn-close');
   const adLabel = document.getElementById('ad-label');
   const adNote = document.getElementById('ad-auto-note');
-  if (back) back.textContent = t('backToCatalog');
+  
+  if (backText) backText.textContent = t('backToCatalog');
   if (store) store.textContent = t('storeName');
-  if (spinBtn) spinBtn.textContent = t('spin');
+  if (spinBtn) {
+    spinBtn.innerHTML = `<i class="fas fa-star"></i> ${t('spin')}`;
+  }
   if (resultTitle) resultTitle.textContent = t('resultTitle');
   if (closeBtn) closeBtn.textContent = t('close');
   if (adLabel) adLabel.textContent = t('adLabel');
@@ -148,22 +170,38 @@ function isRtlLang() {
   return currentLang === 'he' || currentLang === 'ar';
 }
 
-/** Подписи внутри колеса — крутятся вместе с ним. LTR: от края к центру, RTL: от центра наружу. */
+/** Создание сегментов с современной графикой */
 function buildWheelSegments() {
   if (!el.wheelInner) return;
   el.wheelInner.innerHTML = '';
   const rtl = isRtlLang();
+  
+  // Создаем только подписи с иконками
   for (let i = 0; i < 5; i++) {
-    const seg = document.createElement('div');
-    seg.className = 'wheel-segment-label' + (rtl ? ' wheel-segment-label-rtl' : '');
-    seg.setAttribute('aria-hidden', 'true');
+    const label = document.createElement('div');
+    label.className = 'wheel-segment-label' + (rtl ? ' wheel-segment-label-rtl' : '');
+    label.setAttribute('aria-hidden', 'true');
+    
     const angle = i * SEGMENT_DEG + SEGMENT_DEG / 2;
-    seg.style.transform = `rotate(${angle}deg) translateY(-5%)`;
+    label.style.transform = `rotate(${angle}deg)`;
+    
     const span = document.createElement('span');
     span.style.transform = `rotate(${-angle}deg)`;
-    span.textContent = rtl ? t('prize' + i) : tWheel(i);
-    seg.appendChild(span);
-    el.wheelInner.appendChild(seg);
+    
+    // Добавляем иконку
+    const icon = document.createElement('i');
+    icon.className = PRIZE_ICONS[i];
+    span.appendChild(icon);
+    
+    // Добавляем текст
+    const text = document.createElement('div');
+    text.textContent = tWheel(i);
+    text.style.whiteSpace = 'pre-line';
+    text.style.textAlign = 'center';
+    span.appendChild(text);
+    
+    label.appendChild(span);
+    el.wheelInner.appendChild(label);
   }
 }
 
@@ -171,15 +209,24 @@ function spin() {
   if (!el.wheelInner || !el.btnSpin || !el.result || !el.resultPrize || !el.btnClose) return;
   const index = pickPrizeIndex();
   const prizeText = t('prize' + index);
-  const fullTurns = 5;
+  const fullTurns = 6; // Больше оборотов для драматичности
   const toSegment = angleToSegmentCenter(index);
   currentTotalRotation += fullTurns * 360 + toSegment;
 
   el.btnSpin.disabled = true;
   el.result.classList.remove('visible');
 
+  // Анимация кнопки при старте
+  el.btnSpin.style.transform = 'scale(0.95)';
+  setTimeout(() => {
+    el.btnSpin.style.transform = '';
+  }, 100);
+
   el.wheelInner.classList.add('spinning');
   el.wheelInner.style.transform = `rotate(${-currentTotalRotation}deg)`;
+
+  // Звуковой эффект (опционально)
+  // playSpinSound();
 
   setTimeout(() => {
     el.wheelInner.classList.remove('spinning');
@@ -187,7 +234,10 @@ function spin() {
     el.result.classList.add('visible');
     el.btnClose.focus();
     el.btnSpin.disabled = false;
-  }, 4100);
+    
+    // Конфетти эффект (опционально)
+    // triggerConfetti();
+  }, 5100);
 }
 
 function closeResult() {
@@ -200,3 +250,13 @@ buildWheelSegments();
 
 if (el.btnSpin) el.btnSpin.addEventListener('click', spin);
 if (el.btnClose) el.btnClose.addEventListener('click', closeResult);
+
+// Анимация центра при наведении
+if (el.wheelCenter) {
+  el.wheelCenter.addEventListener('mouseenter', () => {
+    el.wheelCenter.style.transform = 'scale(1.1)';
+  });
+  el.wheelCenter.addEventListener('mouseleave', () => {
+    el.wheelCenter.style.transform = '';
+  });
+}

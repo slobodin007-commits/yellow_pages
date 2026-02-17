@@ -8,53 +8,408 @@
   </script>
   <title>Колесо удачи — YellowPages Info</title>
   <link rel="icon" href="favicon.ico">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    .wheel-page { max-width: 420px; margin: 0 auto; padding: 1.5rem 1rem; text-align: center; }
-    .back-link { display: inline-block; margin-bottom: 1rem; color: #667eea; text-decoration: none; font-size: 0.9375rem; }
-    .back-link:hover { text-decoration: underline; }
-    .wheel-store { font-size: 1.125rem; font-weight: 700; color: #667eea; margin-bottom: 1rem; }
-    .wheel-wrapper { position: relative; width: 280px; height: 280px; margin: 0 auto 1.5rem; }
-    .wheel-pointer { position: absolute; left: 50%; top: -8px; transform: translateX(-50%); z-index: 10; width: 0; height: 0; border-left: 14px solid transparent; border-right: 14px solid transparent; border-top: 24px solid #764ba2; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
-    .wheel { width: 100%; height: 100%; border-radius: 50%; overflow: hidden; position: relative; box-shadow: 0 0 0 6px #fff, 0 0 0 8px #667eea, 0 8px 24px rgba(0,0,0,0.15); }
-    .wheel-inner { position: relative; width: 100%; height: 100%; border-radius: 50%; background: conic-gradient(from -90deg, #667eea 0deg 72deg, #f093fb 72deg 144deg, #4facfe 144deg 216deg, #43e97b 216deg 288deg, #fa709a 288deg 360deg); transition: transform 0.1s linear; }
-    .wheel-inner.spinning { transition: transform 4s cubic-bezier(0.2, 0.8, 0.2, 1); }
-    /* LTR (ru, en): подписи вращаются с колесом, текст от края к центру */
-    .wheel-segment-label { position: absolute; left: 0; top: 0; width: 100%; height: 100%; transform-origin: center center; display: flex; align-items: center; justify-content: flex-start; pointer-events: none; font-size: 0.78rem; font-weight: 700; color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,0.7), 0 0 1px rgba(0,0,0,0.8); }
-    .wheel-segment-label span { display: inline-block; white-space: nowrap; max-width: 62px; overflow: hidden; text-overflow: ellipsis; text-align: start; line-height: 1.2; }
-    /* RTL (he, ar): те же подписи внутри колеса, крутятся с ним; чтение от центра наружу */
-    .wheel-segment-label-rtl { justify-content: flex-end; direction: rtl; }
-    .wheel-segment-label-rtl span { text-align: end; max-width: 76px; }
-    .wheel-center { position: absolute; left: 50%; top: 50%; width: 56px; height: 56px; margin: -28px 0 0 -28px; background: linear-gradient(135deg, #764ba2, #667eea); border-radius: 50%; border: 4px solid #fff; box-shadow: inset 0 2px 8px rgba(255,255,255,0.3), 0 2px 8px rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 0.75rem; z-index: 5; }
-    .btn-spin { width: 100%; max-width: 280px; padding: 1rem 1.5rem; font-size: 1.1rem; font-weight: 700; color: #fff; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; border-radius: 14px; cursor: pointer; box-shadow: 0 6px 20px rgba(102,126,234,0.4); margin-bottom: 1rem; }
-    .btn-spin:hover:not(:disabled) { opacity: 0.95; transform: translateY(-1px); }
-    .btn-spin:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
-    .wheel-result { display: none; margin-top: 1.5rem; padding: 1.25rem; background: linear-gradient(135deg, #f8f9ff 0%, #fff 100%); border-radius: 16px; border: 2px solid #667eea; }
-    .wheel-result.visible { display: block; animation: resultIn 0.4s ease; }
-    @keyframes resultIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
-    .wheel-result-title { font-size: 0.9rem; color: #666; margin-bottom: 0.5rem; }
-    .wheel-result-prize { font-size: 1.35rem; font-weight: 800; color: #667eea; margin-bottom: 1rem; }
-    .btn-close { padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: 600; color: #667eea; background: #fff; border: 2px solid #667eea; border-radius: 10px; cursor: pointer; }
-    .btn-close:hover { background: #f0f4ff; }
-    .ad-section { margin: 2rem 0; padding: 1rem; background: #f8f9fa; border-radius: 12px; text-align: center; }
-    .ad-section p { margin: 0 0 0.5rem; font-size: 0.75rem; color: #888; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(250, 112, 154, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(67, 233, 123, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(79, 172, 254, 0.2) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .wheel-page { 
+      position: relative;
+      z-index: 1;
+      max-width: 480px; 
+      margin: 0 auto; 
+      padding: 2rem 1.5rem; 
+      text-align: center; 
+    }
+    .back-link { 
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem; 
+      color: #fff; 
+      text-decoration: none; 
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 0.75rem 1.5rem;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+    .back-link:hover { 
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+    .wheel-store { 
+      font-size: 2rem; 
+      font-weight: 900; 
+      color: #fff; 
+      margin-bottom: 2rem;
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      letter-spacing: 0.5px;
+    }
+    .wheel-wrapper { 
+      position: relative; 
+      width: 340px; 
+      height: 340px; 
+      margin: 0 auto 2rem; 
+      filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
+    }
+    
+    /* Указатель с эффектом свечения */
+    .wheel-pointer { 
+      position: absolute; 
+      left: 50%; 
+      top: -16px; 
+      transform: translateX(-50%); 
+      z-index: 30;
+      filter: drop-shadow(0 4px 12px rgba(255, 215, 0, 0.6));
+    }
+    .wheel-pointer::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      width: 0; 
+      height: 0; 
+      border-left: 18px solid transparent; 
+      border-right: 18px solid transparent; 
+      border-top: 32px solid #ffd700;
+      filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.8));
+    }
+    .wheel-pointer::after {
+      content: '▼';
+      position: absolute;
+      left: 50%;
+      top: 8px;
+      transform: translateX(-50%);
+      font-size: 1.2rem;
+      color: #fff;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Внешнее кольцо колеса с анимацией */
+    .wheel { 
+      width: 100%; 
+      height: 100%; 
+      border-radius: 50%; 
+      overflow: visible;
+      position: relative; 
+      animation: wheelGlow 3s ease-in-out infinite;
+    }
+    @keyframes wheelGlow {
+      0%, 100% { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.3)); }
+      50% { filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.6)); }
+    }
+    
+    /* Внешняя декоративная рамка */
+    .wheel::before {
+      content: '';
+      position: absolute;
+      inset: -12px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ffd700, #ffed4e, #ffd700);
+      z-index: -1;
+      animation: borderRotate 8s linear infinite;
+    }
+    @keyframes borderRotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    .wheel::after {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      z-index: -1;
+    }
+    
+    /* Внутренний контейнер с сегментами */
+    .wheel-inner { 
+      position: relative; 
+      width: 100%; 
+      height: 100%; 
+      border-radius: 50%;
+      background: conic-gradient(
+        from -90deg,
+        #667eea 0deg 72deg,
+        #f093fb 72deg 144deg,
+        #4facfe 144deg 216deg,
+        #43e97b 216deg 288deg,
+        #fa709a 288deg 360deg
+      );
+      transition: transform 0.1s linear;
+      overflow: hidden;
+    }
+    .wheel-inner.spinning { 
+      transition: transform 5s cubic-bezier(0.17, 0.67, 0.12, 0.99); 
+    }
+    
+    /* Подписи с иконками */
+    .wheel-segment-label { 
+      position: absolute; 
+      left: 0; 
+      top: 0; 
+      width: 100%; 
+      height: 100%; 
+      transform-origin: center center;
+      pointer-events: none;
+      z-index: 10;
+    }
+    .wheel-segment-label span { 
+      position: absolute;
+      left: 35%;
+      top: 15%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.3rem;
+      white-space: nowrap;
+      font-size: 0.85rem; 
+      font-weight: 700; 
+      color: #fff; 
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), 0 0 2px rgba(0, 0, 0, 0.8);
+      line-height: 1.2;
+    }
+    .wheel-segment-label i {
+      font-size: 1.5rem;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    }
+    
+    /* RTL подписи */
+    .wheel-segment-label-rtl { 
+      direction: rtl; 
+    }
+    .wheel-segment-label-rtl span { 
+      text-align: center;
+    }
+    
+    /* Центральный элемент с 3D эффектом */
+    .wheel-center { 
+      position: absolute; 
+      left: 50%; 
+      top: 50%; 
+      width: 72px; 
+      height: 72px; 
+      margin: -36px 0 0 -36px; 
+      background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffd700 100%);
+      border-radius: 50%; 
+      border: 5px solid #fff; 
+      box-shadow: 
+        inset 0 4px 12px rgba(255, 255, 255, 0.5),
+        inset 0 -4px 12px rgba(0, 0, 0, 0.2),
+        0 8px 24px rgba(0, 0, 0, 0.3);
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      color: #764ba2; 
+      font-weight: 900; 
+      font-size: 1.1rem; 
+      z-index: 20;
+      animation: centerPulse 2s ease-in-out infinite;
+      text-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);
+    }
+    @keyframes centerPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    /* Кнопка вращения */
+    .btn-spin { 
+      width: 100%; 
+      max-width: 340px; 
+      padding: 1.25rem 2rem; 
+      font-size: 1.25rem; 
+      font-weight: 800; 
+      color: #fff; 
+      background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffd700 100%);
+      border: none; 
+      border-radius: 20px; 
+      cursor: pointer; 
+      box-shadow: 
+        0 8px 24px rgba(255, 215, 0, 0.4),
+        inset 0 2px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.1);
+      margin-bottom: 1.5rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #764ba2;
+      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+    }
+    .btn-spin::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s;
+    }
+    .btn-spin:hover:not(:disabled)::before {
+      left: 100%;
+    }
+    .btn-spin:hover:not(:disabled) { 
+      transform: translateY(-3px);
+      box-shadow: 
+        0 12px 32px rgba(255, 215, 0, 0.5),
+        inset 0 2px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.1);
+    }
+    .btn-spin:active:not(:disabled) {
+      transform: translateY(-1px);
+    }
+    .btn-spin:disabled { 
+      opacity: 0.6; 
+      cursor: not-allowed; 
+      transform: none; 
+    }
+    
+    /* Результат с glassmorphism */
+    .wheel-result { 
+      display: none; 
+      margin-top: 2rem; 
+      padding: 2rem; 
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 24px; 
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+    }
+    .wheel-result.visible { 
+      display: block; 
+      animation: resultIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); 
+    }
+    @keyframes resultIn { 
+      from { 
+        opacity: 0; 
+        transform: scale(0.8) translateY(20px); 
+      } 
+      to { 
+        opacity: 1; 
+        transform: scale(1) translateY(0); 
+      } 
+    }
+    .wheel-result-title { 
+      font-size: 1rem; 
+      color: #666; 
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+    .wheel-result-prize { 
+      font-size: 2rem; 
+      font-weight: 900; 
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1.5rem;
+      line-height: 1.3;
+    }
+    .btn-close { 
+      padding: 1rem 2rem; 
+      font-size: 1.1rem; 
+      font-weight: 700; 
+      color: #667eea; 
+      background: #fff; 
+      border: 3px solid #667eea; 
+      border-radius: 16px; 
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .btn-close:hover { 
+      background: #667eea;
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+    }
+    
+    /* Секция рекламы */
+    .ad-section { 
+      margin: 3rem 0 1rem; 
+      padding: 1.5rem; 
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: center; 
+    }
+    .ad-section p { 
+      margin: 0 0 0.5rem; 
+      font-size: 0.85rem; 
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 500;
+    }
+    
+    /* Адаптивность */
+    @media (max-width: 480px) {
+      .wheel-wrapper {
+        width: 300px;
+        height: 300px;
+      }
+      .wheel-store {
+        font-size: 1.5rem;
+      }
+      .btn-spin {
+        font-size: 1.1rem;
+        padding: 1rem 1.5rem;
+      }
+    }
   </style>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8042664823664503" crossorigin="anonymous"></script>
 </head>
 <body>
   <div class="wheel-page">
-    <a href="index.html" class="back-link" id="back-link"></a>
+    <a href="index.html" class="back-link" id="back-link">
+      <i class="fas fa-arrow-left"></i>
+      <span id="back-text"></span>
+    </a>
     <div class="wheel-store" id="wheel-store-name"></div>
 
     <div class="wheel-wrapper">
       <div class="wheel-pointer" aria-hidden="true"></div>
       <div class="wheel" id="wheel">
         <div class="wheel-inner" id="wheel-inner"></div>
-        <div class="wheel-center" id="wheel-center"></div>
+        <div class="wheel-center" id="wheel-center">SPIN</div>
       </div>
     </div>
 
-    <button type="button" class="btn-spin" id="btn-spin"></button>
+    <button type="button" class="btn-spin" id="btn-spin">
+      <i class="fas fa-star"></i>
+    </button>
+    
     <div class="wheel-result" id="wheel-result">
       <p class="wheel-result-title" id="result-title"></p>
       <p class="wheel-result-prize" id="result-prize"></p>
