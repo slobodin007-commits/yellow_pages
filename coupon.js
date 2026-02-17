@@ -117,7 +117,7 @@ function t(key) {
 
 /** Ключи перевода текста скидки по storeId (данные в Firestore на русском) */
 const COUPON_TEXT_KEY_BY_STORE = {
-  dr_mobale: 'discount15',
+  dr_mobile: 'discount15',
   hanita_dogs: 'discount20',
   florista: 'discount10',
   pizuhe_perez: 'discountByCoupon'

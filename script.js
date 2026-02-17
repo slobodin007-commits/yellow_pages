@@ -125,8 +125,8 @@ const HOURS_09_21 = {
 const STORES_DATA = [
   {
     id: 1,
-    firestoreId: 'dr_mobale',
-    name: { ru: 'dr_mobale', en: 'dr_mobale', he: 'dr_mobale', ar: 'dr_mobale' },
+    firestoreId: 'dr_mobile',
+    name: { ru: 'dr_mobile', en: 'dr_mobile', he: 'dr_mobile', ar: 'dr_mobile' },
     category: { ru: 'магазин', en: 'store', he: 'חנות', ar: 'متجر' },
     description: {
       ru: 'Khanita St 22, Haifa.',
@@ -139,7 +139,7 @@ const STORES_DATA = [
     couponDesc: { ru: 'Скидка 15%', en: '15% off', he: '15% הנחה', ar: 'خصم 15%' },
     phone: '+972501234501',
     mapUrl: 'https://www.google.com/maps/search/?api=1&query=Khanita+St+22%2C+Haifa',
-    image: 'image_store/dr_mobale.png'
+    image: 'image_store/dr_mobile.png'
   },
   {
     id: 2,

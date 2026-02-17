@@ -104,7 +104,7 @@ export const redeemCoupon = onCall({ region: 'europe-west1' }, async (request) =
  * PIN по умолчанию: 1234 (поменять можно в Firebase Console).
  */
 const STORES_TO_SEED = [
-  { id: 'dr_mobale', name: 'dr_mobale', couponText: 'Скидка 15%' },
+  { id: 'dr_mobile', name: 'dr_mobile', couponText: 'Скидка 15%' },
   { id: 'hanita_dogs', name: 'חניתה דוגס', couponText: '20% скидка' },
   { id: 'florista', name: 'Florista', couponText: '10% скидка' },
   { id: 'pizuhe_perez', name: 'פיצוחי פרץ', couponText: 'Скидка по купону' }
