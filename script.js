@@ -383,8 +383,17 @@ function createStoreCard(store) {
         await window.ypFirebase.createCouponAndRedirect(store.firestoreId);
       } catch (err) {
         console.error(err);
+        var msg = t('couponError') || 'Ошибка. Попробуйте позже.';
+        if (err && err.message) {
+          if (err.message.includes('not-found') || err.message.includes('Store not found')) {
+            msg = 'Магазин ещё не добавлен в базу. Попробуйте позже.';
+          } else if (err.message.includes('unavailable') || err.message.includes('network')) {
+            msg = 'Нет связи. Проверьте интернет.';
+          }
+        }
+        showToast(msg);
+      } finally {
         toggleBtn.disabled = false;
-        showToast(t('couponError') || 'Ошибка. Попробуйте позже.');
       }
       return;
     }
