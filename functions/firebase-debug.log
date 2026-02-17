@@ -1,0 +1,86 @@
+[debug] [2026-02-17T15:49:58.770Z] ----------------------------------------------------------------------
+[debug] [2026-02-17T15:49:58.773Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\slobo\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only functions
+[debug] [2026-02-17T15:49:58.773Z] CLI Version:   14.24.1
+[debug] [2026-02-17T15:49:58.773Z] Platform:      win32
+[debug] [2026-02-17T15:49:58.773Z] Node Version:  v22.14.0
+[debug] [2026-02-17T15:49:58.774Z] Time:          Tue Feb 17 2026 17:49:58 GMT+0200 (Israel Standard Time)
+[debug] [2026-02-17T15:49:58.774Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-02-17T15:49:58.969Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-17T15:49:58.969Z] > authorizing via signed-in user (slobodin007@gmail.com)
+[debug] [2026-02-17T15:49:58.969Z] [iam] checking project yellowpages-info for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2026-02-17T15:49:58.970Z] Checked if tokens are valid: true, expires at: 1771346820539
+[debug] [2026-02-17T15:49:58.970Z] Checked if tokens are valid: true, expires at: 1771346820539
+[debug] [2026-02-17T15:49:58.971Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/yellowpages-info:testIamPermissions [none]
+[debug] [2026-02-17T15:49:58.971Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/yellowpages-info:testIamPermissions x-goog-quota-user=projects/yellowpages-info
+[debug] [2026-02-17T15:49:58.971Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/yellowpages-info:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2026-02-17T15:50:00.027Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/yellowpages-info:testIamPermissions 200
+[debug] [2026-02-17T15:50:00.028Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/yellowpages-info:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2026-02-17T15:50:00.028Z] Checked if tokens are valid: true, expires at: 1771346820539
+[debug] [2026-02-17T15:50:00.028Z] Checked if tokens are valid: true, expires at: 1771346820539
+[debug] [2026-02-17T15:50:00.028Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/yellowpages-info/serviceAccounts/yellowpages-info@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2026-02-17T15:50:00.028Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/yellowpages-info/serviceAccounts/yellowpages-info@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2026-02-17T15:50:01.098Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/yellowpages-info/serviceAccounts/yellowpages-info@appspot.gserviceaccount.com:testIamPermissions 404
+[debug] [2026-02-17T15:50:01.098Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/yellowpages-info/serviceAccounts/yellowpages-info@appspot.gserviceaccount.com:testIamPermissions {"error":{"code":404,"message":"Unknown service account","status":"NOT_FOUND"}}
+[debug] [2026-02-17T15:50:01.099Z] [functions] service account IAM check errored, deploy may fail: Request to https://iam.googleapis.com/v1/projects/yellowpages-info/serviceAccounts/yellowpages-info@appspot.gserviceaccount.com:testIamPermissions had HTTP Error: 404, Unknown service account {"name":"FirebaseError","children":[],"context":{"body":{"error":{"code":404,"message":"Unknown service account","status":"NOT_FOUND"}},"response":{"statusCode":404}},"exit":1,"message":"Request to https://iam.googleapis.com/v1/projects/yellowpages-info/serviceAccounts/yellowpages-info@appspot.gserviceaccount.com:testIamPermissions had HTTP Error: 404, Unknown service account","status":404}
+[info] 
+[info] === Deploying to 'yellowpages-info'...
+[info] 
+[info] i  deploying functions 
+[info] +  functions: Finished running predeploy script. 
+[debug] [2026-02-17T15:50:01.104Z] Checked if tokens are valid: true, expires at: 1771346820539
+[debug] [2026-02-17T15:50:01.104Z] Checked if tokens are valid: true, expires at: 1771346820539
+[debug] [2026-02-17T15:50:01.104Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/yellowpages-info [none]
+[debug] [2026-02-17T15:50:01.324Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/yellowpages-info 200
+[debug] [2026-02-17T15:50:01.325Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/yellowpages-info {"projectNumber":"744986718090","projectId":"yellowpages-info","lifecycleState":"ACTIVE","name":"yellowpages-info","labels":{"firebase":"enabled","firebase-core":"disabled"},"createTime":"2026-02-17T07:53:41.427673Z"}
+[info] i  functions: preparing codebase default for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2026-02-17T15:50:01.327Z] Checked if tokens are valid: true, expires at: 1771346820539
+[debug] [2026-02-17T15:50:01.327Z] Checked if tokens are valid: true, expires at: 1771346820539
+[debug] [2026-02-17T15:50:01.327Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/yellowpages-info/adminSdkConfig [none]
+[debug] [2026-02-17T15:50:01.692Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/yellowpages-info/adminSdkConfig 200
+[debug] [2026-02-17T15:50:01.692Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/yellowpages-info/adminSdkConfig {"projectId":"yellowpages-info","storageBucket":"yellowpages-info.firebasestorage.app"}
+[debug] [2026-02-17T15:50:01.693Z] Checked if tokens are valid: true, expires at: 1771346820539
+[debug] [2026-02-17T15:50:01.693Z] Checked if tokens are valid: true, expires at: 1771346820539
+[debug] [2026-02-17T15:50:01.693Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/yellowpages-info/configs [none]
+[debug] [2026-02-17T15:50:02.095Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/yellowpages-info/configs 200
+[debug] [2026-02-17T15:50:02.095Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/yellowpages-info/configs {}
+[debug] [2026-02-17T15:50:02.096Z] Validating nodejs source
+[warn] !  functions: Runtime Node.js 20 will be deprecated on 2026-04-30 and will be decommissioned on 2026-10-30, after which you will not be able to deploy without upgrading. Consider upgrading now to avoid disruption. See https://cloud.google.com/functions/docs/runtime-support for full details on the lifecycle policy 
+[warn] !  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] !  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2026-02-17T15:50:03.305Z] > [functions] package.json contents: {
+  "name": "yellowpages-info-functions",
+  "description": "Cloud Functions: createCoupon, redeemCoupon",
+  "main": "index.js",
+  "type": "module",
+  "engines": {
+    "node": "20"
+  },
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "deploy": "firebase deploy --only functions"
+  },
+  "dependencies": {
+    "firebase-admin": "^12.0.0",
+    "firebase-functions": "^6.0.0"
+  }
+}
+[debug] [2026-02-17T15:50:03.305Z] Building nodejs source
+[info] i  functions: Loading and analyzing source code for codebase default to determine what to deploy 
+[debug] [2026-02-17T15:50:03.306Z] Could not find functions.yaml. Must use http discovery
+[debug] [2026-02-17T15:50:03.315Z] Found firebase-functions binary at 'E:\5_min_web\yellow_pages\yellow_pages\functions\node_modules\.bin\firebase-functions'
+[info] Serving at port 8910
+
+[debug] [2026-02-17T15:50:04.060Z] Got response from /__/functions.yaml {"endpoints":{"createCoupon":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","region":["europe-west1"],"labels":{},"callableTrigger":{},"entryPoint":"createCoupon"},"redeemCoupon":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","region":["europe-west1"],"labels":{},"callableTrigger":{},"entryPoint":"redeemCoupon"},"seedStores":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","region":["europe-west1"],"labels":{},"callableTrigger":{},"entryPoint":"seedStores"}},"specVersion":"v1alpha1","requiredAPIs":[],"extensions":{}}
+[info] i  extensions: ensuring required API firebaseextensions.googleapis.com is enabled... 
+[debug] [2026-02-17T15:50:08.106Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-17T15:50:08.107Z] > authorizing via signed-in user (slobodin007@gmail.com)
+[debug] [2026-02-17T15:50:08.107Z] [iam] checking project yellowpages-info for permissions ["firebase.projects.get","firebaseextensions.instances.list"]
+[debug] [2026-02-17T15:50:08.107Z] Checked if tokens are valid: true, expires at: 1771346820539
+[debug] [2026-02-17T15:50:08.107Z] Checked if tokens are valid: true, expires at: 1771346820539
+[debug] [2026-02-17T15:50:08.107Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/yellowpages-info:testIamPermissions [none]
+[debug] [2026-02-17T15:50:08.108Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/yellowpages-info:testIamPermissions x-goog-quota-user=projects/yellowpages-info
+[debug] [2026-02-17T15:50:08.108Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/yellowpages-info:testIamPermissions {"permissions":["firebase.projects.get","firebaseextensions.instances.list"]}
