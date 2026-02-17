@@ -181,10 +181,13 @@ main {
   flex-direction: column;
 }
 
+/* Картинка целиком в блоке, без обрезки */
 .store-card-image {
   width: 100%;
-  height: 140px;
-  object-fit: cover;
+  height: 160px;
+  object-fit: contain;
+  object-position: center;
+  background: #f0f2f5;
 }
 
 /* ровная высота карточки за счет управления контентом */
