@@ -197,7 +197,7 @@ function buildWheelSegments() {
     label.style.transform = `rotate(${angle}deg)`;
     
     const span = document.createElement('span');
-    span.style.transform = `rotate(${-angle}deg)`;
+    span.style.transform = 'rotate(0deg)'; /* по радиусу, без обратного поворота */
     
     // Добавляем иконку
     const icon = document.createElement('i');
